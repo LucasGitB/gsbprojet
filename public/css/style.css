@@ -1,0 +1,157 @@
+html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    margin: 0 auto;
+}
+
+header {
+    background-color: rgb(4, 4, 148);
+    width: auto;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 10px;
+}
+
+.place1 {
+    margin-left: 25%;
+}
+
+.bandeau img {
+    background-color: white;
+    width: 100%;
+    height: 100px;
+}
+
+.champInputConnexion {
+    margin-top: 15%;
+}
+
+.placeIndicationChamps {
+    display: flex;
+    align-items: center;
+    height: 10px;
+}
+
+.connexion {
+    margin: 5% 23%;
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    height: 400px;
+    box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+}
+
+
+.interact {
+    color: black;
+}
+
+a {
+    color: rgb(255, 255, 255);
+}
+
+a:link {
+    text-decoration: none;
+
+}
+
+.nav-title-white {
+    color: rgb(255, 255, 255);
+}
+
+.title-nav {
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+}
+
+.accueil {
+    margin: 5%;
+    text-align: center;
+}
+
+.medecin {
+    width: 50%;
+}
+
+.logo {
+    width: 50%;
+    height: 50%;
+}
+
+
+
+.profil {
+
+    display: flex;
+    align-items: center;
+}
+
+.navigation {
+    width: 20%;
+    height: 600px;
+    border-right: 0.1em solid rgba(49, 49, 49, 0.6);
+}
+
+.navigation li {
+    margin: 10% 5%;
+}
+
+.title {
+    margin-left: 15px;
+    width: 100%;
+    height: 60px;
+    border-bottom: 0.1em solid rgba(49, 49, 49, 0.6);
+}
+
+.Periode h1 {
+    padding: 5px;
+    background-color: rgb(163, 163, 163);
+    color: white;
+}
+
+.champsElementForfaitisé h1 {
+    padding: 5px;
+    background-color: rgb(4, 4, 148);
+    color: white;
+}
+
+.englobeInput {
+    display: flex;
+
+    align-items: center;
+}
+
+.inputSaisie {
+    height: 20px;
+    align-items: center;
+    margin-left: 10px;
+}
+
+p {
+    margin-left: 20px;
+}
+
+.champsButton {
+    margin-top: 1%;
+    margin-left: 2%;
+}
+
+.connect {
+    color: white;
+}
+
+.backconnexion {
+    background: url(/public/img/background.jpg);
+}

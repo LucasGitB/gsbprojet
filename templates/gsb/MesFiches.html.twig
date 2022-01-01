@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gsb{% endblock %}
+
+{% block body %}
+<header>
+        <a class="nav-title-white" href="{{path('gsb')}}">
+            <li>GSB - Galaxy Swiss Bourdin</li>
+        </a>
+        <a class="nav-title-white" href="{{path('app_logout')}}">
+            <li><i class="fas fa-sign-out-alt"></i> Déconnexion</li>
+        </a>
+    </header>
+
+    <section>
+
+
+        <div class="navigation">
+
+            <div class="profil">
+                <i class="far fa-user-circle fa-2x"></i>
+                <li>{{ app.user.username }}</li>
+                <br>
+            </div>
+            <nav>
+                <a href="{{path('saisiefiches')}}" class="interact">
+                    <li><i class="fas fa-tasks"></i> Saisie fiche de frais</li>
+                </a>
+                <a href="{{path('mesfiches')}}" class="interact">
+                    <li><i class="fas fa-tasks"></i> Mes fiches de frais</li>
+                </a>
+            </nav>
+        </div>
+
+        <div class="title">
+            <h1>Mes fiches de frais</h1>
+
+
+<br>
+
+
+            <div class="Periode">
+                <h1>Période d'engagement : Janvier 2021</h1>
+            </div>
+
+
+
+<br>
+
+            <div class="champsElementForfaitisé">
+                <h1>Mois à sélectionner</h1>
+                <br>
+                <div class="englobeInput">
+                    <p>Mois : </p>
+                    <input class="inputSaisie" type="date" name="" id="">
+
+                </div>
+                <div class="champsButton">
+                    <input type="button" value="Valider">
+
+                </div>
+
+                {# {{ app.fichefraisauforfait.nuits}} #}
+    </section>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gsb{% endblock %}
+
+{% block body %}
+
+
+
+<header>
+      <a class="nav-title-white" href="{{path('gsb')}}">
+            <li>GSB - Galaxy Swiss Bourdin</li>
+        </a>
+        <a class="nav-title-white" href="{{path('app_logout')}}">
+            <li><i class="fas fa-sign-out-alt"></i> Déconnexion</li>
+        </a>
+    </header>
+
+    <section>
+
+
+        <div class="navigation">
+
+            <div class="profil">
+                <i class="far fa-user-circle fa-2x"></i>
+                <li>{{ app.user.username }}</li>
+                <br>
+            </div>
+            <nav>
+                {% if is_granted('ROLE_COMPTABLE')%}
+                    <a href="{{ path('app_validation') }}" class="interact"><li> Validation Fiche </li></a>
+                    <a href="{{ path('app_validation') }}" class="interact"><li> Suivie Fiche </li></a>
+                {% endif %}
+            </nav>
+        </div>
+
+        <div class="title">
+            <h1>Validation des frais par visiteur</h1>
+
+
+
+
+
+            <div class="Periode">
+                <h1>Période d'engagement : Janvier 2021</h1>
+            </div>
+
+
+
+
+
+            <div class="champsElementForfaitisé">
+                <h1>Mois à sélectionner</h1>
+                <div class="englobeInput">
+                    <label for="pet-select">Choisir un visiteur : </label>
+                    <p></p>
+                    <select>
+                        <option value="">--Choisir--</option>
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                        <option value="hamster">Hamster</option>
+                        <option value="parrot">Parrot</option>
+                        <option value="spider">Spider</option>
+                        <option value="goldfish">Goldfish</option>
+                    </select>
+
+                    <p>Mois : </p>
+                    <input class="inputSaisie" type="date" name="" id="">
+
+
+                </div>
+                <div class="champsButton">
+                    <input type="button" value="Valider">
+                </div>
+
+
+                <div style="clear:left;">
+                    <h2>Frais au forfait </h2>
+                </div>
+                <table border="1">
+                    <tr>
+                        <th>Repas midi</th>
+                        <th>Nuitée </th>
+                        <th>Etape</th>
+                        <th>Km </th>
+                        <th>Situation</th>
+                    </tr>
+                    <tr align="center">
+                        <td width="80"><input type="text" size="3" name="repas" /></td>
+                        <td width="80"><input type="text" size="3" name="nuitee" /></td>
+                        <td width="80"> <input type="text" size="3" name="etape" /></td>
+                        <td width="80"> <input type="text" size="3" name="km" /></td>
+                        <td width="80">
+                            <select size="3" name="situ">
+                                <option value="E">Enregistré</option>
+                                <option value="V">Validé</option>
+                                <option value="R">Remboursé</option>
+                            </select></td>
+                    </tr>
+                </table>
+
+                <p class="titre" />
+                <div style="clear:left;">
+                    <h2>Hors Forfait</h2>
+                </div>
+                <table border=" 1">
+                    <tr>
+                        <th>Date</th>
+                        <th>Libellé </th>
+                        <th>Montant</th>
+                        <th>Situation</th>
+                    </tr>
+                    <tr align="center">
+                        <td width="100"><input type="text" size="12" name="hfDate1" /></td>
+                        <td width="220"><input type="text" size="30" name="hfLib1" /></td>
+                        <td width="90"> <input type="text" size="10" name="hfMont1" /></td>
+                        <td width="80">
+                            <select size="3" name="hfSitu1">
+                                <option value="E">Enregistré</option>
+                                <option value="V">Validé</option>
+                                <option value="R">Remboursé</option>
+                            </select></td>
+                    </tr>
+                </table>
+
+
+                <div class="champsElementForfaitisé">
+
+                    <div class="englobeInput">
+                        <p>Nombre de justificatif </p>
+                        <p></p>
+                        <input type="text">
+                    </div>
+
+                </div>
+
+
+                <div class="champsButton">
+                    <input type="button" value="Réinitialiser">
+                    <input type="button" value="Envoyer">
+                </div>
+            </div>
+
+    </section>
+
+
+
+
+{% endblock %}

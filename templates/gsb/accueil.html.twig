@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gsb{% endblock %}
+
+{% block body %}
+    <header>
+        <a class="nav-title-white" href="{{path('gsb')}}">
+            <li>GSB - Galaxy Swiss Bourdin</li>
+        </a>
+        <a class="nav-title-white" href="{{path('app_logout')}}">
+            <li><i class="fas fa-sign-out-alt"></i> Déconnexion</li>
+        </a>
+    </header>
+    <section>
+
+
+        <div class="navigation" class="interact">
+
+            <div class="profil">
+                <i class="far fa-user-circle fa-2x"></i>
+                <li>{{ app.user.username }}</li>
+                <br>
+            </div>
+            <nav>
+                {% if is_granted('ROLE_WORKER')%}
+                    <a href="{{path('saisiefiches')}}" class="interact">
+                        <li><i class="fas fa-tasks"></i> Saisie fiche de frais</li>
+                    </a>
+                    <a href="{{path('mesfiches')}}" class="interact">
+                        <li><i class="fas fa-tasks"></i> Mes fiches de frais</li>
+                    </a>
+                {% endif %}
+
+                {% if is_granted('ROLE_COMPTABLE')%}
+                    <a href="{{ path('app_validation') }}" class="interact"><li> Validation Fiche </li></a>
+                    <a href="{{ path('app_validation') }}" class="interact"><li> Suivie Fiche </li></a>
+                {% endif %}
+
+                {% if is_granted('ROLE_ADMIN')%}
+                    <a href="{{ path('app_register') }}" class="interact"><li>Ajout de compte</li></a>
+                {% endif %}
+
+            </nav>
+        </div>
+
+        <div class="title">
+            <h1>Accueil</h1>
+
+
+
+            <section class="accueil">
+                <img class="logo" src="/img/gsb.png" alt="">
+                <img class="medecin" src="/img/background.jpg" alt="">
+            </section>
+
+
+
+
+{% endblock %}

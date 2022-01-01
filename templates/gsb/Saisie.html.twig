@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gsb{% endblock %}
+
+{% block body %}
+    <header>
+        <a class="nav-title-white" href="{{path('gsb')}}">
+            <li>GSB - Galaxy Swiss Bourdin</li>
+        </a>
+        <a class="nav-title-white" href="{{path('app_logout')}}">
+            <li><i class="fas fa-sign-out-alt"></i> Déconnexion</li>
+        </a>
+    </header>
+
+    <section>
+
+
+        <div class="navigation">
+
+            <div class="profil">
+                <i class="far fa-user-circle fa-2x"></i>
+                <li>{{ app.user.username }}</li>
+                <br>
+            </div>
+            <nav>
+                <a href="{{path('saisiefiches')}}" class="interact">
+                    <li><i class="fas fa-tasks"></i> Saisie fiche de frais</li>
+                </a>
+                <a href="{{path('mesfiches')}}" class="interact">
+                    <li><i class="fas fa-tasks"></i> Mes fiches de frais</li>
+                </a>
+            </nav>
+        </div>
+
+        <div class="title">
+            <h1>Saisie fiche de frais</h1>
+
+<br>
+
+
+
+            <div class="Periode">
+                <h1>Période d'engagement : Janvier 2021</h1>
+            </div>
+
+
+
+
+
+            <div class="champsElementForfaitisé">
+            <br>
+                <h1>Elements Forfaitisés</h1>
+                <br>
+                <div class="englobeInput">
+
+{# {{ form_start(form) }}
+{{ form_row(form.periodeEngagement)}}
+{{ form_row(form.repasMidi)}}
+{{ form_row(form.nuits)}}
+{{ form_row(form.etape)}}
+{{ form_row(form.km)}}
+
+<button type="submit"> Valider </button>
+{{ form_end(form) }} #}
+
+                </div>
+
+                <div class="champsElementForfaitisé">
+                <br>
+                    <h1>Nouvel élément hors forfait</h1>
+                    <br>
+                    <div class="englobeInput">
+
+           
+
+                    </div>
+
+                    <div class="champsElementForfaitisé">
+
+
+
+                    </div>
+
+
+                    <div class="champsButton">
+                        <input type="button" value="Valider">
+                        <input type="button" value="Effacer">
+                    </div>
+                </div>
+    </section>
+
+
+
+
+{% endblock %}
