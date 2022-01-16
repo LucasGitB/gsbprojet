@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UsersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -36,6 +38,16 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Fiches::class, mappedBy="users", orphanRemoval=true)
+     */
+    private $fiches;
+
+    public function __construct()
+    {
+        $this->fiches = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -124,5 +136,35 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|Fiches[]
+     */
+    public function getFiches(): Collection
+    {
+        return $this->fiches;
+    }
+
+    public function addFich(Fiches $fich): self
+    {
+        if (!$this->fiches->contains($fich)) {
+            $this->fiches[] = $fich;
+            $fich->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFich(Fiches $fich): self
+    {
+        if ($this->fiches->removeElement($fich)) {
+            // set the owning side to null (unless already changed)
+            if ($fich->getUsers() === $this) {
+                $fich->setUsers(null);
+            }
+        }
+
+        return $this;
     }
 }

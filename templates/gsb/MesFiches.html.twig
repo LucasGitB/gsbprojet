@@ -60,8 +60,13 @@
 
                 </div>
 
-                {# {{ app.fichefraisauforfait.nuits}} #}
-    </section>
+                {{ dump(fiches) }}
+
+
+                { % for fiche in fiches % }
+                        {{ fiches.prix }}
+                { % endfor % }
+    </section>  
 
 
 
