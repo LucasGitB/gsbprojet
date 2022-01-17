@@ -63,9 +63,9 @@
                 {{ dump(fiches) }}
 
 
-                { % for fiche in fiches % }
-                        {{ fiches.prix }}
-                { % endfor % }
+                {% for fiche in fiches %}
+                        {{ fiche.prix }}
+                {% endfor %}
     </section>  
 
 
