@@ -40,7 +40,7 @@
 
 
             <div class="Periode">
-                <h1>Période d'engagement : Janvier 2021</h1>
+                <h1>Période d'engagement : Janvier 2022</h1>
             </div>
 
 
@@ -59,13 +59,43 @@
                     <input type="button" value="Valider">
 
                 </div>
-
-                {{ dump(fiches) }}
+<br>
+                {# {{ dump(fiches) }} #}
 
 
                 {% for fiche in fiches %}
-                        {{ fiche.prix }}
-                {% endfor %}
+                <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Libellé</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td> {{ fiche.prix }}</td>
+      <td>{{ fiche.nom }}</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+    </tr>
+  </tbody>
+</table>
+
+{% endfor %}
+
+
+
+                
     </section>  
 
 
