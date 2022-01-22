@@ -9,7 +9,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\FichesType;
 use App\Entity\Fiches;
+use App\Form\UploadType;
 use App\Repository\FichesRepository;
+use App\Entity\Upload;
 
 class GsbController extends AbstractController
 {
@@ -70,6 +72,34 @@ class GsbController extends AbstractController
     {
         return $this->render('gsb/validation.html.twig', [
             'controller_name' => 'GsbController',
+        ]);
+    }
+
+    /**
+     * @Route("/upload", name="app_upload")
+     */
+    public function upload(Request $request, EntityManagerInterface $em)
+    {
+        $upload = new Upload();
+        $form = $this->createForm(UploadType::class, $upload);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $file = $upload->getName();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move($this->getParameter('upload_directory'), $fileName);
+            $upload->setName($fileName);
+
+            //return $this->redirectToRoute('');
+        }
+
+        if($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+            $em->persist($upload);
+            $em->flush();
+        }
+
+        return $this->render('gsb/upload.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }

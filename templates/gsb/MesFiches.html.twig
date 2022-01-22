@@ -33,7 +33,8 @@
         </div>
 
         <div class="title">
-            <h1>Mes fiches de frais</h1>
+        <br>
+            <h1 class="title-head">Mes fiches de frais</h1>
 
 
 <br>
@@ -51,50 +52,43 @@
                 <h1>Mois à sélectionner</h1>
                 <br>
                 <div class="englobeInput">
-                    <p>Mois : </p>
-                    <input class="inputSaisie" type="date" name="" id="">
+                    <input class="inputSaisie" type="date" name="" id="" value="01/10/2021">
+                     <button type="submit" class="btn btn-light">Confirmer date</button>
 
                 </div>
-                <div class="champsButton">
-                    <input type="button" value="Valider">
 
-                </div>
-<br>
                 {# {{ dump(fiches) }} #}
+<br>
+            <div class="Periode">
+                <h1></h1>
+            </div>
 
 
+<div class="Fiches-screen">
                 {% for fiche in fiches %}
                 <table class="table table-dark">
-  <thead>
+
+<table class="table table-striped ">
+  <thead class="tab-color">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Prix</th>
-      <th scope="col">Libellé</th>
+      <th scope="col">libellé</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td> {{ fiche.prix }}</td>
+      <td> {{ fiche.prix }} €</td>
       <td>{{ fiche.nom }}</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
     </tr>
   </tbody>
 </table>
-
+<div>
 {% endfor %}
 
 
-
+<br>
                 
     </section>  
 
