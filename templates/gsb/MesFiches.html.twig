@@ -18,7 +18,7 @@
                 <div class="navigation interact">
             <div class="profil">
                 <i class="far fa-user-circle fa-2x"></i>
-                <li>{{app.user.nom}} {{app.user.prenom}}</li>
+                <li>Bonjour {{app.user.prenom}}</li>
                 <br>
             </div>
 
@@ -51,7 +51,7 @@
                 <br>
                 <div class="englobeInput">
                     <input class="inputSaisie" type="date" name="" id="" value="01/10/2021">
-                     <button type="submit" class="btn btn-light">Confirmer date</button>
+                     <button type="submit" class="btn btn-secondary">Confirmer</button>
 
                 </div>
 
@@ -61,7 +61,8 @@
                 <h1></h1>
             </div>
 
-
+<br>
+<br>
 <div class="Fiches-screen">
                 {% for fiche in fiches %}
                 {% if fiche.users_id == app.user.id %}

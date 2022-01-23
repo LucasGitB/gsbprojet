@@ -9,7 +9,7 @@ body {
 header {
     background-color: rgb(4, 4, 148);
     width: auto;
-    height: 40px;
+    height: 65px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -134,8 +134,7 @@ section {
 
 .englobeInput {
     display: flex;
-    justify-content: space-between;
-    width: 400px;
+    justify-content: center;
     align-items: center;
     background-color: rgb(255, 255, 255);
 }
@@ -174,7 +173,7 @@ p {
 }
 
 table {
-    border: 5px solid black;
+    border: 5px solid rgb(0, 0, 0);
     border-collapse: collapse;
 }
 
@@ -182,8 +181,4 @@ table {
     margin-left: 10%;
     align-items: center;
     width: 75%;
-}
-
-.table-striped {
-    border-bottom: 0.1em solid rgba(255, 0, 0, 0.6);
 }

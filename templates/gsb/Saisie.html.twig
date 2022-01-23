@@ -18,7 +18,7 @@
         <div class="navigation interact">
             <div class="profil">
                 <i class="far fa-user-circle fa-2x"></i>
-                <li>{{app.user.nom}} {{app.user.prenom}}</li>
+                <li>Bonjour {{app.user.prenom}}</li>
                 <br>
             </div>
 
@@ -43,18 +43,37 @@
 
             <div class="champsElementForfaitisé">
             <br>
-                <h1>Elements Forfaitisés</h1>
+                <h1>Element à Forfaitiser</h1>
                 <br>
                 <div class="englobeInput">
+                {{ form_start(form) }}
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>{{ form_row(form.repas_midi)}}</td>
+      <td>{{ form_row(form.periode)}}</td>
+      <td>{{ form_row(form.nuits)}}</td>
+      <td>{{ form_row(form.etape)}}</td>
+      <td>{{ form_row(form.km)}}</td>
+    </tr>
+  </tbody>
+</table>
 
-{{ form_start(form) }}
-{{ form_row(form.repas_midi)}}
-{{ form_row(form.periode)}}
-{{ form_row(form.nuits)}}
-{{ form_row(form.etape)}}
-{{ form_row(form.km)}}
 
-<button type="submit"> Valider </button>
+
+
+
+
+
+<button type="submit" class="btn btn-secondary">Valider</button>
 {{ form_end(form) }}
 
                 </div>
@@ -77,8 +96,7 @@
 
 
                     <div class="champsButton">
-                        <input type="button" value="Valider">
-                        <input type="button" value="Effacer">
+<button type="submit" class="btn btn-secondary">Valider</button>
                     </div>
                 </div>
     </section>
