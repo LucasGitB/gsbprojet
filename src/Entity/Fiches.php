@@ -33,6 +33,11 @@ class Fiches
      */
     private $users;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $users_id;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,6 +75,18 @@ class Fiches
     public function setUsers(?Users $users): self
     {
         $this->users = $users;
+
+        return $this;
+    }
+
+    public function getUsers_id(): ?int
+    {
+        return $this->users_id;
+    }
+
+    public function setUsers_id(int $users_id): self
+    {
+        $this->prix = $users_id;
 
         return $this;
     }
