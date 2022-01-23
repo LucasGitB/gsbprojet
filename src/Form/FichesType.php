@@ -12,8 +12,6 @@ class FichesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('prix')
-            ->add('nom')
             ->add('periode')
             ->add('repas_midi')
             ->add('nuits')

@@ -18,16 +18,6 @@ class Fiches
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $prix;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nom;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="fiches")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -134,6 +124,18 @@ class Fiches
     }
 
     public function setRepas_midi(int $repas_midi): self
+    {
+        $this->repas_midi = $repas_midi;
+
+        return $this;
+    }
+
+    public function getRepasMidi(): ?int
+    {
+        return $this->repas_midi;
+    }
+
+    public function setRepasMidi(int $repas_midi): self
     {
         $this->repas_midi = $repas_midi;
 
