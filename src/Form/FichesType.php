@@ -14,6 +14,11 @@ class FichesType extends AbstractType
         $builder
             ->add('prix')
             ->add('nom')
+            ->add('periode')
+            ->add('repas_midi')
+            ->add('nuits')
+            ->add('etape')
+            ->add('km')
         ;
     }
 

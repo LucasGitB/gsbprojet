@@ -166,6 +166,10 @@ p {
 .tab-color {
     background-color: rgb(30, 145, 252);
     color: white;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
 }
 
 table {
@@ -177,4 +181,8 @@ table {
     margin-left: 10%;
     align-items: center;
     width: 75%;
+}
+
+.table-striped {
+    border-bottom: 0.1em solid rgba(255, 0, 0, 0.6);
 }

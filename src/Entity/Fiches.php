@@ -38,6 +38,31 @@ class Fiches
      */
     private $users_id;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $periode;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $repas_midi;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nuits;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $etape;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $km;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +112,66 @@ class Fiches
     public function setUsers_id(int $users_id): self
     {
         $this->prix = $users_id;
+
+        return $this;
+    }
+
+    public function getPeriode(): ?string
+    {
+        return $this->periode;
+    }
+
+    public function setPeriode(string $periode): self
+    {
+        $this->periode = $periode;
+
+        return $this;
+    }
+
+    public function getRepas_midi(): ?int
+    {
+        return $this->repas_midi;
+    }
+
+    public function setRepas_midi(int $repas_midi): self
+    {
+        $this->repas_midi = $repas_midi;
+
+        return $this;
+    }
+
+    public function getNuits(): ?int
+    {
+        return $this->nuits;
+    }
+
+    public function setNuits(int $nuits): self
+    {
+        $this->nuits = $nuits;
+
+        return $this;
+    }
+
+    public function getEtape(): ?int
+    {
+        return $this->etape;
+    }
+
+    public function setEtape(int $etape): self
+    {
+        $this->etape = $etape;
+
+        return $this;
+    }
+
+    public function getKm(): ?int
+    {
+        return $this->km;
+    }
+
+    public function setKm(int $km): self
+    {
+        $this->km = $km;
 
         return $this;
     }
