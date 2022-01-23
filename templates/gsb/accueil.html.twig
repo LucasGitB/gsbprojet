@@ -14,30 +14,43 @@
     <section>
 
 
-        <div class="navigation" class="interact">
-
+        <div class="navigation interact">
             <div class="profil">
                 <i class="far fa-user-circle fa-2x"></i>
-                <li>{{ app.user.username }}</li>
+                <li>{{app.user.nom}} {{app.user.prenom}}</li>
                 <br>
             </div>
+
             <nav>
                 {% if is_granted('ROLE_WORKER')%}
-                    <a href="{{path('saisiefiches')}}" class="interact">
-                        <li><i class="fas fa-tasks"></i> Saisie fiche de frais</li>
+                    <a href="{{path('saisiefiches')}}" class="profil interact">
+                    <i class="fas fa-tasks"></i>
+                        <li> Saisie fiche de frais</li>
                     </a>
-                    <a href="{{path('mesfiches')}}" class="interact">
-                        <li><i class="fas fa-tasks"></i> Mes fiches de frais</li>
+
+                    <a href="{{path('mesfiches')}}" class="profil interact">
+                    <i class="fas fa-tasks"></i> 
+                        <li>Mes fiches de frais</li>
                     </a>
                 {% endif %}
 
                 {% if is_granted('ROLE_COMPTABLE')%}
-                    <a href="{{ path('app_validation') }}" class="interact"><li> Validation Fiche </li></a>
-                    <a href="{{ path('app_validation') }}" class="interact"><li> Suivie Fiche </li></a>
+                    <a href="{{ path('app_validation') }}" class="profil interact">
+                    <i class="fas fa-tasks"></i>
+                    <li> Validation Fiche </li>
+                    </a>
+
+                    <a href="{{ path('app_validation') }}" class="profil interact">
+                    <i class="fas fa-tasks"></i>
+                    <li> Suivie Fiche </li>
+                    </a>
                 {% endif %}
 
                 {% if is_granted('ROLE_ADMIN')%}
-                    <a href="{{ path('app_register') }}" class="interact"><li>Ajout de compte</li></a>
+                    <a href="{{ path('app_register') }}" class="profil interact">
+                    <i class="fas fa-tasks"></i>
+                    <li>Ajout de compte</li>
+                    </a>
                 {% endif %}
 
             </nav>

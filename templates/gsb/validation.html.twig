@@ -18,18 +18,23 @@
     <section>
 
 
-        <div class="navigation">
-
+        <div class="navigation interact">
             <div class="profil">
                 <i class="far fa-user-circle fa-2x"></i>
-                <li>{{ app.user.username }}</li>
+                <li>{{app.user.nom}} {{app.user.prenom}}</li>
                 <br>
             </div>
+
             <nav>
-                {% if is_granted('ROLE_COMPTABLE')%}
-                    <a href="{{ path('app_validation') }}" class="interact"><li> Validation Fiche </li></a>
-                    <a href="{{ path('app_validation') }}" class="interact"><li> Suivie Fiche </li></a>
-                {% endif %}
+                    <a href="{{ path('app_validation') }}" class="interact profil">
+                    <i class="fas fa-tasks"></i>
+                    <li> Validation Fiche </li>
+                    </a>
+
+                    <a href="{{ path('app_validation') }}" class="interact profil">
+                    <i class="fas fa-tasks"></i>
+                    <li> Suivie Fiche </li>
+                    </a>
             </nav>
         </div>
 

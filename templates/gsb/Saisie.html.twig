@@ -15,19 +15,21 @@
     <section>
 
 
-        <div class="navigation">
-
+        <div class="navigation interact">
             <div class="profil">
                 <i class="far fa-user-circle fa-2x"></i>
-                <li>{{ app.user.username }}</li>
+                <li>{{app.user.nom}} {{app.user.prenom}}</li>
                 <br>
             </div>
+
             <nav>
-                <a href="{{path('saisiefiches')}}" class="interact">
-                    <li><i class="fas fa-tasks"></i> Saisie fiche de frais</li>
+                <a href="{{path('saisiefiches')}}" class="interact profil">
+                <i class="fas fa-tasks"></i>
+                    <li> Saisie fiche de frais</li>
                 </a>
-                <a href="{{path('mesfiches')}}" class="interact">
-                    <li><i class="fas fa-tasks"></i> Mes fiches de frais</li>
+                <a href="{{path('mesfiches')}}" class="interact profil">
+                <i class="fas fa-tasks"></i>
+                    <li>Mes fiches de frais</li>
                 </a>
             </nav>
         </div>
@@ -37,15 +39,6 @@
             <h1 class="title-head">Saisie fiche de frais</h1>
 
 <br>
-
-
-
-            <div class="Periode">
-                <h1>Période d'engagement : Janvier 2021</h1>
-            </div>
-
-
-
 
 
             <div class="champsElementForfaitisé">
