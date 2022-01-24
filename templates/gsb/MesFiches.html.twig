@@ -81,6 +81,7 @@
       <th scope="col">Nuitée</th>
       <th scope="col">Etape</th>
       <th scope="col">Km</th>
+      <th scope="col">Delete</th>
     </tr>
   </tbody>
   <tbody>
@@ -90,6 +91,7 @@
       <td> {{ fiche.nuits }}</td>
       <td>{{ fiche.etape }}</td>
       <td>{{ fiche.km }} km</td>
+      <th><a href="{{ path('delete_mesfiches', {'id': fiche.id })  }}">Supprimer fiche</a></th>
 
 
     </tr>

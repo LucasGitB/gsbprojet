@@ -102,4 +102,19 @@ class GsbController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    //Mes fiches de frais delete
+    /**
+     * @Route("/mesfichesfrais/delete/{id}", name="delete_mesfiches")
+     */
+    public function suppFiche(Fiches $fiche, EntityManagerInterface $em)
+    {
+
+        $em->remove($fiche);
+        $em->flush();
+
+        return $this->redirectToRoute('mesfiches');
+
+    }
+
 }
