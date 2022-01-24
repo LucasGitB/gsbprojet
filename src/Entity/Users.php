@@ -54,9 +54,15 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $prenom;
 
+    /**
+     * @ORM\OneToMany(targetEntity=FicheHorsForfait::class, mappedBy="users", orphanRemoval=true)
+     */
+    private $ficheHorsForfaits;
+
     public function __construct()
     {
         $this->fiches = new ArrayCollection();
+        $this->ficheHorsForfaits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -198,6 +204,36 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FicheHorsForfait[]
+     */
+    public function getFicheHorsForfaits(): Collection
+    {
+        return $this->ficheHorsForfaits;
+    }
+
+    public function addFicheHorsForfait(FicheHorsForfait $ficheHorsForfait): self
+    {
+        if (!$this->ficheHorsForfaits->contains($ficheHorsForfait)) {
+            $this->ficheHorsForfaits[] = $ficheHorsForfait;
+            $ficheHorsForfait->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFicheHorsForfait(FicheHorsForfait $ficheHorsForfait): self
+    {
+        if ($this->ficheHorsForfaits->removeElement($ficheHorsForfait)) {
+            // set the owning side to null (unless already changed)
+            if ($ficheHorsForfait->getUsers() === $this) {
+                $ficheHorsForfait->setUsers(null);
+            }
+        }
 
         return $this;
     }

@@ -9,9 +9,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\FichesType;
 use App\Entity\Fiches;
+use App\Entity\FicheHorsForfait;
+use App\Form\FicheHorsForfaitType;
 use App\Form\UploadType;
 use App\Repository\FichesRepository;
 use App\Entity\Upload;
+use App\Repository\FicheHorsForfaitRepository;
 
 class GsbController extends AbstractController
 {
@@ -29,11 +32,12 @@ class GsbController extends AbstractController
     /**
      * @Route("/mesfichesfrais", name="mesfiches")
      */
-    public function mesfiches(FichesRepository $ficheRequestRepository): Response
+    public function mesfiches(FichesRepository $ficheRequestRepository, FicheHorsForfaitRepository $ficheHorsForfaitRepository): Response
     {
 
         return $this->render('gsb/MesFiches.html.twig', [
             'fiches' => $ficheRequestRepository->findAll(),
+            'ficheHorsForfait' => $ficheHorsForfaitRepository->findAll(),
           ]);
     }
 
@@ -46,22 +50,27 @@ class GsbController extends AbstractController
 
         $fichefrais = new Fiches();
         $fichefrais->setUsers($this->getUser());
-    //     $fichehorsforfait = new FicheFraisHorsForfait;
-        $form = $this->createForm(FichesType::class, $fichefrais);
-    //     $form2 = $this->createForm(FicheFraisHorsForfaitType::class, $fichehorsforfait);
+        $fichehorsforfait = new FicheHorsForfait();
+        $fichehorsforfait->setUsers($this->getUser());
 
-        if($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+
+
+        $form = $this->createForm(FichesType::class, $fichefrais);
+        $form2 = $this->createForm(FicheHorsForfaitType::class, $fichehorsforfait);
+        $form->handleRequest($request);
+        if($request->isMethod('POST') && $form->isSubmitted() && $form->isValid()){
             $em->persist($fichefrais);
             $em->flush();
         }
-
-    //     // if($request->isMethod('POST') && $form2->handleRequest($request)->isValid()){
-    //     //    $em->persist($fichehorsforfait);
-    //     //     $em->flush();
-    //     // }
+        $form2->handleRequest($request);
+        if($request->isMethod('POST') && $form2->isSubmitted() && $form2->isValid()){
+           $em->persist($fichehorsforfait);
+            $em->flush();
+        }
 
          return $this->render('gsb/Saisie.html.twig',[
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'form2' => $form2->createView(),
         ]);
     }
 
@@ -109,8 +118,22 @@ class GsbController extends AbstractController
      */
     public function suppFiche(Fiches $fiche, EntityManagerInterface $em)
     {
-
+        
         $em->remove($fiche);
+        $em->flush();
+
+        return $this->redirectToRoute('mesfiches');
+
+    }
+
+        //Mes fiches de frais delete
+    /**
+     * @Route("/mesfichesfrais/deletehors/{id}", name="delete_mesficheshors")
+     */
+    public function suppFicheHors(FicheHorsForfait $ficheHorsForfait, EntityManagerInterface $em)
+    {
+        
+        $em->remove($ficheHorsForfait);
         $em->flush();
 
         return $this->redirectToRoute('mesfiches');

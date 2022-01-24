@@ -101,7 +101,39 @@
 {% endif %}
 {% endfor %}
 
+<div class="Fiches-screen">
+                {% for ficheHorsForfait in ficheHorsForfait %}
+                {% if ficheHorsForfait.users_id == app.user.id %}
+                <table class="table table-dark">
 
+<table class="table table-striped bordure">
+  <thead>
+
+      <h3 class="tab-color2">Frais hors Forfait</h3>
+
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="col">Date </th>
+      <th scope="col">Libellé</th>
+      <th scope="col">Montant</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> {{ ficheHorsForfait.date}}</td>
+      <td>{{ ficheHorsForfait.libelle }}</td>
+      <td> {{ ficheHorsForfait.montant }}</td>
+      <th><a href="{{ path('delete_mesficheshors', {'id': ficheHorsForfait.id })  }}">Supprimer fiche</a></th>
+
+
+    </tr>
+  </tbody>
+</table>
+<div>
+{% endif %}
+{% endfor %}
 <br>
                 
     </section>  

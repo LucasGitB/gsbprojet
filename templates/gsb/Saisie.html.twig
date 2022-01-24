@@ -76,6 +76,8 @@
 <button type="submit" class="btn btn-secondary">Valider</button>
 {{ form_end(form) }}
 
+
+
                 </div>
 
                 <div class="champsElementForfaitisé">
@@ -84,24 +86,29 @@
                     <br>
                     <div class="englobeInput">
 
-           
+                           {{ form_start(form2) }}
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>{{ form_row(form2.date)}}</td>
+      <td>{{ form_row(form2.libelle)}}</td>
+      <td>{{ form_row(form2.montant)}}</td>
+    </tr>
+  </tbody>
+</table>
 
-                    </div>
 
-                    <div class="champsElementForfaitisé">
-
-
-
-                    </div>
-
-
-                    <div class="champsButton">
 <button type="submit" class="btn btn-secondary">Valider</button>
+{{ form_end(form2) }}
+
                     </div>
-                </div>
-    </section>
-
-
-
 
 {% endblock %}
