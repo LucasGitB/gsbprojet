@@ -41,6 +41,10 @@ class GsbController extends AbstractController
           ]);
     }
 
+   
+
+
+
     //Saisie fiches de frais
     /**
      * @Route("/saisiefichesfrais", name="saisiefiches")
@@ -74,13 +78,15 @@ class GsbController extends AbstractController
         ]);
     }
 
+     //Validation comptable fiches
     /**
      * @Route("/comptable/validation", name="app_validation")
      */
-    public function validation(): Response
+    public function validation(FichesRepository $ficheRequestRepository, FicheHorsForfaitRepository $ficheHorsForfaitRepository): Response
     {
         return $this->render('gsb/validation.html.twig', [
-            'controller_name' => 'GsbController',
+            'fiches' => $ficheRequestRepository->findAll(),
+            'ficheHorsForfait' => $ficheHorsForfaitRepository->findAll(),
         ]);
     }
 
@@ -114,7 +120,7 @@ class GsbController extends AbstractController
 
     //Mes fiches de frais delete
     /**
-     * @Route("/mesfichesfrais/delete/{id}", name="delete_mesfiches")
+     * @Route("/comptable/validation/delete/{id}", name="delete_fiches")
      */
     public function suppFiche(Fiches $fiche, EntityManagerInterface $em)
     {
@@ -122,13 +128,13 @@ class GsbController extends AbstractController
         $em->remove($fiche);
         $em->flush();
 
-        return $this->redirectToRoute('mesfiches');
+        return $this->redirectToRoute('app_validation');
 
     }
 
         //Mes fiches de frais delete
     /**
-     * @Route("/mesfichesfrais/deletehors/{id}", name="delete_mesficheshors")
+     * @Route("/comptable/validation/deletehors/{id}", name="delete_ficheshors")
      */
     public function suppFicheHors(FicheHorsForfait $ficheHorsForfait, EntityManagerInterface $em)
     {
@@ -136,7 +142,7 @@ class GsbController extends AbstractController
         $em->remove($ficheHorsForfait);
         $em->flush();
 
-        return $this->redirectToRoute('mesfiches');
+        return $this->redirectToRoute('app_validation');
 
     }
 

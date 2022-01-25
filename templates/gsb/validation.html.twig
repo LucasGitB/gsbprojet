@@ -79,74 +79,81 @@
                 </div>
 
 
-                <div style="clear:left;">
-                    <h2>Frais au forfait </h2>
-                </div>
-                <table border="1">
-                    <tr>
-                        <th>Repas midi</th>
-                        <th>Nuitée </th>
-                        <th>Etape</th>
-                        <th>Km </th>
-                        <th>Situation</th>
-                    </tr>
-                    <tr align="center">
-                        <td width="80"><input type="text" size="3" name="repas" /></td>
-                        <td width="80"><input type="text" size="3" name="nuitee" /></td>
-                        <td width="80"> <input type="text" size="3" name="etape" /></td>
-                        <td width="80"> <input type="text" size="3" name="km" /></td>
-                        <td width="80">
-                            <select size="3" name="situ">
-                                <option value="E">Enregistré</option>
-                                <option value="V">Validé</option>
-                                <option value="R">Remboursé</option>
-                            </select></td>
-                    </tr>
-                </table>
+               <br>
+<br>
+<div class="Fiches-screen">
+                {% for fiche in fiches %}
+                <table class="table table-dark">
 
-                <p class="titre" />
-                <div style="clear:left;">
-                    <h2>Hors Forfait</h2>
-                </div>
-                <table border=" 1">
-                    <tr>
-                        <th>Date</th>
-                        <th>Libellé </th>
-                        <th>Montant</th>
-                        <th>Situation</th>
-                    </tr>
-                    <tr align="center">
-                        <td width="100"><input type="text" size="12" name="hfDate1" /></td>
-                        <td width="220"><input type="text" size="30" name="hfLib1" /></td>
-                        <td width="90"> <input type="text" size="10" name="hfMont1" /></td>
-                        <td width="80">
-                            <select size="3" name="hfSitu1">
-                                <option value="E">Enregistré</option>
-                                <option value="V">Validé</option>
-                                <option value="R">Remboursé</option>
-                            </select></td>
-                    </tr>
-                </table>
+<table class="table table-striped bordure">
+  <thead>
+
+      <h3 class="tab-color">Frais Au Forfait</h3>
+
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="col">Repas midi </th>
+      <th scope="col">Période</th>
+      <th scope="col">Nuitée</th>
+      <th scope="col">Etape</th>
+      <th scope="col">Km</th>
+      <th scope="col">Salarié</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> {{ fiche.repas_midi}}</td>
+      <td>{{ fiche.periode }}</td>
+      <td> {{ fiche.nuits }}</td>
+      <td>{{ fiche.etape }}</td>
+      <td>{{ fiche.km }} km</td>
+      <td>{{app.user.nom}} {{app.user.prenom}}</td>
+      <th><a href="{{ path('delete_fiches', {'id': fiche.id })  }}">Supprimer fiche</a></th>
 
 
-                <div class="champsElementForfaitisé">
+    </tr>
+  </tbody>
+</table>
+<div>
 
-                    <div class="englobeInput">
-                        <p>Nombre de justificatif </p>
-                        <p></p>
-                        <input type="text">
-                    </div>
+{% endfor %}
 
-                </div>
+<div class="Fiches-screen">
+                {% for ficheHorsForfait in ficheHorsForfait %}
+                <table class="table table-dark">
+
+<table class="table table-striped bordure">
+  <thead>
+
+      <h3 class="tab-color2">Frais hors Forfait</h3>
+
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="col">Date </th>
+      <th scope="col">Libellé</th>
+      <th scope="col">Montant</th>
+      <th scope="col">Salarié</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> {{ ficheHorsForfait.date}}</td>
+      <td>{{ ficheHorsForfait.libelle }}</td>
+      <td> {{ ficheHorsForfait.montant }}</td>
+        <th>{{app.user.nom}} {{app.user.prenom}}</th>
+      <th><a href="{{ path('delete_ficheshors', {'id': ficheHorsForfait.id })  }}">Supprimer fiche</a></th>
 
 
-                <div class="champsButton">
-                    <input type="button" value="Réinitialiser">
-                    <input type="button" value="Envoyer">
-                </div>
-            </div>
-
-    </section>
+    </tr>
+  </tbody>
+</table>
+<div>
+{% endfor %}
+<br>
 
 
 
