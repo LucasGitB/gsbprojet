@@ -38,49 +38,67 @@
             </nav>
         </div>
 
+
+
+
+
+
         <div class="title">
         <br>
             <h1 class="title-head">Validation des frais par visiteur</h1>
+        <div>
 
-
-
-
-
-            <div class="Periode">
-                <h1>Période d'engagement : Janvier 2021</h1>
-            </div>
-
-
-
-
-
-            <div class="champsElementForfaitisé">
-                <h1>Mois à sélectionner</h1>
-                <div class="englobeInput">
-                    <label for="pet-select">Choisir un visiteur : </label>
-                    <p></p>
-                    <select>
-                        <option value="">--Choisir--</option>
-                        <option value="dog">Dog</option>
-                        <option value="cat">Cat</option>
-                        <option value="hamster">Hamster</option>
-                        <option value="parrot">Parrot</option>
-                        <option value="spider">Spider</option>
-                        <option value="goldfish">Goldfish</option>
-                    </select>
-
-                    <p>Mois : </p>
-                    <input class="inputSaisie" type="date" name="" id="">
-
-
-                </div>
-                <div class="champsButton">
-                    <input type="button" value="Valider">
-                </div>
-
-
-               <br>
 <br>
+<section class="filter">
+<div class="periode">
+<h3 class="tab-color">Période</h3>
+<br>
+<input type="month">
+<button type="submit" class="btn btn-secondary">Valider</button>
+</section>
+
+<br>
+<br>
+            
+
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="fiches-screen">
 <div class="Fiches-screen">
                 {% for fiche in fiches %}
                 <table class="table table-dark">
@@ -143,7 +161,7 @@
     <tr>
       <td> {{ ficheHorsForfait.date}}</td>
       <td>{{ ficheHorsForfait.libelle }}</td>
-      <td> {{ ficheHorsForfait.montant }}</td>
+      <td> {{ ficheHorsForfait.montant }} €</td>
         <th>{{app.user.nom}} {{app.user.prenom}}</th>
       <th><a href="{{ path('delete_ficheshors', {'id': ficheHorsForfait.id })  }}">Supprimer fiche</a></th>
 
@@ -154,7 +172,7 @@
 <div>
 {% endfor %}
 <br>
-
+</section>
 
 
 

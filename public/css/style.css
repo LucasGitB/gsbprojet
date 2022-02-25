@@ -165,6 +165,7 @@ p {
 
 .tab-color {
     background-color: rgb(4, 4, 148);
+    padding: 10px;
     color: white;
     display: flex;
     align-items: center;
@@ -174,6 +175,7 @@ p {
 
 .tab-color2 {
     background-color: rgb(255, 153, 0);
+    padding: 10px;
     color: white;
     display: flex;
     align-items: center;
@@ -186,8 +188,27 @@ table {
     border-collapse: collapse;
 }
 
-.Fiches-screen {
-    margin-left: 10%;
+.filter {
+    display: flex;
     align-items: center;
-    width: 75%;
+    text-align: center;
+    justify-content: center;
+}
+
+.fiches-screen {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.Fiches-screen {
+    width: 1500px;
+}
+
+.periode {
+    background-color: rgb(247, 247, 247);
+    width: 50%;
+    height: 150px;
+    border-bottom: 0.05em solid rgba(49, 49, 49, 0.6);
 }

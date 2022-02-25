@@ -41,6 +41,88 @@
 <br>
 
 
+<section class="filter">
+<div class="periode">
+<h3 class="tab-color">PÉRIODE D'ENGAGEMENT</h3>
+<br>
+<h3>Mars 2022</h3>
+</section>
+<br>
+<br>
+
+<section class="fiches-screen">
+<div class="Fiches-screen">
+   
+                <table class="table table-dark">
+
+<table class="table table-striped bordure">
+  <thead>
+
+      <h3 class="tab-color">Frais au forfait</h3>
+{{ form_start(form) }}
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>{{ form_row(form.repas_midi)}}</td>
+      <td>{{ form_row(form.periode)}}</td>
+      <td>{{ form_row(form.nuits)}}</td>
+      <td>{{ form_row(form.etape)}}</td>
+      <td>{{ form_row(form.km)}}</td>
+      <td><button type="submit" class="btn btn-secondary">Valider</button></td>
+              
+    </tr>
+  </tbody>
+</table>
+{{ form_end(form) }}
+<div>
+
+
+
+<section class="fiches-screen">
+<div class="Fiches-screen">
+   
+                <table class="table table-dark">
+
+<table class="table table-striped bordure">
+  <thead>
+
+      <h3 class="tab-color2">Frais hors forfait</h3>
+{{ form_start(form2) }}
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>{{ form_row(form2.date)}}</td>
+      <td>{{ form_row(form2.libelle)}}</td>
+      <td>{{ form_row(form2.montant)}}</td>
+      <td><button type="submit" class="btn btn-secondary">Valider</button></td>
+    </tr>
+  </tbody>
+</table>
+
+{{ form_end(form2) }}
+<div>
+
+
+
+{# 
             <div class="champsElementForfaitisé">
             <br>
                 <h1>Element à Forfaitiser</h1>
@@ -74,9 +156,9 @@
 
 
 <button type="submit" class="btn btn-secondary">Valider</button>
-{{ form_end(form) }}
+{{ form_end(form) }} #}
 
-
+{# 
 
                 </div>
 
@@ -109,6 +191,6 @@
 <button type="submit" class="btn btn-secondary">Valider</button>
 {{ form_end(form2) }}
 
-                    </div>
+                    </div> #}
 
 {% endblock %}
