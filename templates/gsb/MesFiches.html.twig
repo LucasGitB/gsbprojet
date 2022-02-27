@@ -23,14 +23,18 @@
             </div>
 
             <nav>
+ 
                 <a href="{{path('saisiefiches')}}" class="interact profil">
                 <i class="fas fa-tasks"></i>
                     <li> Saisie fiche de frais</li>
                 </a>
+
+            <div class="visitePage">    
                 <a href="{{path('mesfiches')}}" class="interact profil">
-                <i class="fas fa-tasks"></i>
-                    <li>Mes fiches de frais</li>
+                <i class="fas fa-tasks  visitePageTextColor"></i>
+                    <li class="visitePageTextColor">Mes fiches de frais</li>
                 </a>
+            </div>
             </nav>
         </div>
 
@@ -44,35 +48,37 @@
 
 
 
+
+
+
 <br>
-
-            <div class="champsElementForfaitisé">
-                <h1>Mois à sélectionner</h1>
-                <br>
-                <div class="englobeInput">
-                    <input class="inputSaisie" type="date" name="" id="" value="01/10/2021">
-                     <button type="submit" class="btn btn-secondary">Confirmer</button>
-
-                </div>
-
-                {# {{ dump(fiches) }} #}
+<section class="filter">
+<div class="periode">
+<h3 class="tab-color">Période</h3>
 <br>
-            <div class="Periode">
-                <h1></h1>
-            </div>
+<input type="month">
+<button type="submit" class="btn btn-secondary">Valider</button>
+</section>
 
 <br>
 <br>
+
+
+
+
+<section class="fiches-screen">
+
 <div class="Fiches-screen">
-                {% for fiche in fiches %}
-                {% if fiche.users_id == app.user.id %}
-                <table class="table table-dark">
 
-<table class="table table-striped bordure">
+{% for fiche in fiches %}
+<br>
+  <h1>Au Forfait</h1>
+<br>
+  {% if fiche.users_id == app.user.id %}
+  
+<table class="table">
   <thead>
-
       <h3 class="tab-color">Frais Au Forfait</h3>
-
   </thead>
   <tbody>
     <tr>
@@ -81,7 +87,6 @@
       <th scope="col">Nuitée</th>
       <th scope="col">Etape</th>
       <th scope="col">Km</th>
-
     </tr>
   </tbody>
   <tbody>
@@ -91,9 +96,6 @@
       <td> {{ fiche.nuits }}</td>
       <td>{{ fiche.etape }}</td>
       <td>{{ fiche.km }} km</td>
-   
-
-
     </tr>
   </tbody>
 </table>
@@ -101,12 +103,15 @@
 {% endif %}
 {% endfor %}
 
-<div class="Fiches-screen">
-                {% for ficheHorsForfait in ficheHorsForfait %}
-                {% if ficheHorsForfait.users_id == app.user.id %}
-                <table class="table table-dark">
 
-<table class="table table-striped bordure">
+{% for ficheHorsForfait in ficheHorsForfait %}
+<br>
+<br>
+    <h1>Hors Forfait</h1>
+<br>
+  {% if ficheHorsForfait.users_id == app.user.id %}
+
+<table class="table">
   <thead>
 
       <h3 class="tab-color2">Frais hors Forfait</h3>
@@ -117,14 +122,13 @@
       <th scope="col">Date </th>
       <th scope="col">Libellé</th>
       <th scope="col">Montant</th>
-
     </tr>
   </tbody>
   <tbody>
     <tr>
       <td> {{ ficheHorsForfait.date}}</td>
       <td>{{ ficheHorsForfait.libelle }}</td>
-      <td> {{ ficheHorsForfait.montant }}</td>
+      <td> {{ ficheHorsForfait.montant }} €</td>
 
 
 
@@ -135,10 +139,7 @@
 {% endif %}
 {% endfor %}
 <br>
-                
-    </section>  
-
-
+</section>
 
 
 {% endblock %}

@@ -23,10 +23,12 @@
             </div>
 
             <nav>
+            <div class="visitePage">
                 <a href="{{path('saisiefiches')}}" class="interact profil">
-                <i class="fas fa-tasks"></i>
-                    <li> Saisie fiche de frais</li>
+                <i class="fas fa-tasks visitePageTextColor"></i>
+                    <li class="visitePageTextColor"> Saisie fiche de frais</li>
                 </a>
+            </div>    
                 <a href="{{path('mesfiches')}}" class="interact profil">
                 <i class="fas fa-tasks"></i>
                     <li>Mes fiches de frais</li>
@@ -49,13 +51,12 @@
 </section>
 <br>
 <br>
+<br>
+
 
 <section class="fiches-screen">
-<div class="Fiches-screen">
-   
-                <table class="table table-dark">
-
-<table class="table table-striped bordure">
+<div class="Fiches-screen">          
+<table class="table table-bordered ">
   <thead>
 
       <h3 class="tab-color">Frais au forfait</h3>
@@ -63,11 +64,11 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="col"></th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-      <th scope="col"></th>
+      <th scope="col">Repas midi</th>
+      <th scope="col">Période</th>
+      <th scope="col">Nuits</th>
+      <th scope="col">Etapes</th>
+      <th scope="col">Km</th>
       <th scope="col"></th>
     </tr>
   </tbody>
@@ -84,16 +85,12 @@
   </tbody>
 </table>
 {{ form_end(form) }}
-<div>
 
 
+<br>
 
-<section class="fiches-screen">
-<div class="Fiches-screen">
-   
-                <table class="table table-dark">
 
-<table class="table table-striped bordure">
+<table class="table table-bordered">
   <thead>
 
       <h3 class="tab-color2">Frais hors forfait</h3>
@@ -101,10 +98,10 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="col"></th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-      <th scope="col"></th>
+      <th scope="col">Date</th>
+      <th scope="col">Libellé</th>
+      <th scope="col">Montant</th>
+
     </tr>
   </tbody>
   <tbody>
@@ -119,6 +116,17 @@
 
 {{ form_end(form2) }}
 <div>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

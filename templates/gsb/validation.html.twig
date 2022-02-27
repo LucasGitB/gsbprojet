@@ -26,11 +26,12 @@
             </div>
 
             <nav>
+            <div class="visitePage">
                     <a href="{{ path('app_validation') }}" class="interact profil">
-                    <i class="fas fa-tasks"></i>
-                    <li> Validation Fiche </li>
+                    <i class="fas fa-tasks visitePageTextColor"></i>
+                    <li class="visitePageTextColor"> Validation Fiche </li>
                     </a>
-
+            </div>
                     <a href="{{ path('app_validation') }}" class="interact profil">
                     <i class="fas fa-tasks"></i>
                     <li> Suivie Fiche </li>
@@ -39,75 +40,37 @@
         </div>
 
 
-
-
-
-
-        <div class="title">
-        <br>
-            <h1 class="title-head">Validation des frais par visiteur</h1>
-        <div>
+  <div class="title">
+    <br>
+      <h1 class="title-head">Validation des frais par visiteur</h1>
+  <div>
 
 <br>
 <section class="filter">
-<div class="periode">
-<h3 class="tab-color">Période</h3>
-<br>
-<input type="month">
-<button type="submit" class="btn btn-secondary">Valider</button>
+
+  <div class="periode">
+    <h3 class="tab-color">Période</h3>
+      <br>
+    <input type="month" value="">
+
+  <button type="submit" class="btn btn-secondary">Valider</button>
 </section>
 
 <br>
 <br>
-            
-
               
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <section class="fiches-screen">
-<div class="Fiches-screen">
-                {% for fiche in fiches %}
-                <table class="table table-dark">
 
+<div class="Fiches-screen">
+    {% for fiche in fiches %}
+<br>
+<br>
+    <h1>Au Forfait</h1>
+<br>
 <table class="table table-striped bordure">
   <thead>
-
-      <h3 class="tab-color">Frais Au Forfait</h3>
-
+    <h3 class="tab-color">Frais Au Forfait</h3>
   </thead>
   <tbody>
     <tr>
@@ -129,8 +92,6 @@
       <td>{{ fiche.km }} km</td>
       <td>{{app.user.nom}} {{app.user.prenom}}</td>
       <th><a href="{{ path('delete_fiches', {'id': fiche.id })  }}">Supprimer fiche</a></th>
-
-
     </tr>
   </tbody>
 </table>
@@ -138,15 +99,14 @@
 
 {% endfor %}
 
-<div class="Fiches-screen">
-                {% for ficheHorsForfait in ficheHorsForfait %}
-                <table class="table table-dark">
-
+  {% for ficheHorsForfait in ficheHorsForfait %}
+<br>
+<br>
+    <h1>Hors Forfait</h1>
+<br>
 <table class="table table-striped bordure">
   <thead>
-
-      <h3 class="tab-color2">Frais hors Forfait</h3>
-
+    <h3 class="tab-color2">Frais hors Forfait</h3>
   </thead>
   <tbody>
     <tr>
@@ -162,16 +122,16 @@
       <td> {{ ficheHorsForfait.date}}</td>
       <td>{{ ficheHorsForfait.libelle }}</td>
       <td> {{ ficheHorsForfait.montant }} €</td>
-        <th>{{app.user.nom}} {{app.user.prenom}}</th>
+      <th>{{app.user.nom}} {{app.user.prenom}}</th>
       <th><a href="{{ path('delete_ficheshors', {'id': ficheHorsForfait.id })  }}">Supprimer fiche</a></th>
-
 
     </tr>
   </tbody>
 </table>
 <div>
 {% endfor %}
-<br>
+    <br>
+
 </section>
 
 
