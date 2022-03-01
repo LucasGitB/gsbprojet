@@ -21,6 +21,14 @@ header {
     border-bottom: 0.05em solid rgba(49, 49, 49, 0.6);
 }
 
+.title-head2 {
+    border-bottom: 0.05em solid rgba(49, 49, 49, 0.6);
+    background-color: rgb(36, 36, 36);
+    color: white;
+    padding: 10px;
+
+}
+
 .place1 {
     margin-left: 25%;
 }

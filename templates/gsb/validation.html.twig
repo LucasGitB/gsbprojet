@@ -56,19 +56,20 @@
   <button type="submit" class="btn btn-secondary">Valider</button>
 </section>
 
+
 <br>
 <br>
-              
+<br>
+  <h3 class="title-head2">Au Forfait</h3>
+<br>         
 
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
+
     {% for fiche in fiches %}
-<br>
-<br>
-    <h1>Au Forfait</h1>
-<br>
-<table class="table table-striped bordure">
+
+<table class="table">
   <thead>
     <h3 class="tab-color">Frais Au Forfait</h3>
   </thead>
@@ -95,16 +96,21 @@
     </tr>
   </tbody>
 </table>
-<div>
 
 {% endfor %}
+</div>
+</section>
 
+<br>
+<br>
+    <h3 class="title-head2">Hors Forfait</h3>
+<br>
+<section class="fiches-screen">
+
+<div class="Fiches-screen">
   {% for ficheHorsForfait in ficheHorsForfait %}
-<br>
-<br>
-    <h1>Hors Forfait</h1>
-<br>
-<table class="table table-striped bordure">
+
+<table class="table">
   <thead>
     <h3 class="tab-color2">Frais hors Forfait</h3>
   </thead>
@@ -128,10 +134,10 @@
     </tr>
   </tbody>
 </table>
-<div>
 {% endfor %}
     <br>
 
+</div>
 </section>
 
 

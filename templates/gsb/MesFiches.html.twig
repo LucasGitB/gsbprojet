@@ -60,20 +60,21 @@
 <button type="submit" class="btn btn-secondary">Valider</button>
 </section>
 
+
+
+
 <br>
 <br>
-
-
-
+<br>
+  <h3 class="title-head2">Au Forfait</h3>
+<br>
 
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
 
 {% for fiche in fiches %}
-<br>
-  <h1>Au Forfait</h1>
-<br>
+
   {% if fiche.users_id == app.user.id %}
   
 <table class="table">
@@ -82,7 +83,7 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="col">Repas midi </th>
+      <th scope="col">Repas midi</th>
       <th scope="col">Période</th>
       <th scope="col">Nuitée</th>
       <th scope="col">Etape</th>
@@ -99,16 +100,23 @@
     </tr>
   </tbody>
 </table>
-<div>
+
 {% endif %}
 {% endfor %}
+</div>
+</section>
+
+<br>
+<br>
+    <h3 class="title-head2">Hors Forfait</h3>
+<br>
 
 
+<section class="fiches-screen">
+
+<div class="Fiches-screen">
 {% for ficheHorsForfait in ficheHorsForfait %}
-<br>
-<br>
-    <h1>Hors Forfait</h1>
-<br>
+
   {% if ficheHorsForfait.users_id == app.user.id %}
 
 <table class="table">
@@ -126,7 +134,7 @@
   </tbody>
   <tbody>
     <tr>
-      <td> {{ ficheHorsForfait.date}}</td>
+      <td> {{ ficheHorsForfait.date }}</td>
       <td>{{ ficheHorsForfait.libelle }}</td>
       <td> {{ ficheHorsForfait.montant }} €</td>
 
@@ -135,10 +143,11 @@
     </tr>
   </tbody>
 </table>
-<div>
+
 {% endif %}
 {% endfor %}
 <br>
+</div>
 </section>
 
 

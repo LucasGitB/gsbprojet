@@ -43,6 +43,16 @@ class FicheHorsForfait
      */
     private $users_id;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateAdd;
+
+    public function __construct()
+    {
+        $this->dateAdd = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +114,18 @@ class FicheHorsForfait
     public function setUsers_id(int $users_id): self
     {
         $this->prix = $users_id;
+
+        return $this;
+    }
+
+    public function getDateAdd(): ?\DateTimeInterface
+    {
+        return $this->dateAdd;
+    }
+
+    public function setDateAdd(\DateTimeInterface $dateAdd): self
+    {
+        $this->dateAdd = $dateAdd;
 
         return $this;
     }
