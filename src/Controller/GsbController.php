@@ -90,6 +90,18 @@ class GsbController extends AbstractController
         ]);
     }
 
+     //Suivre Paiement comptable fiches
+    /**
+     * @Route("/comptable/suivrePaiement", name="app_suivrePaiement")
+     */
+    public function suivrePaiement(FichesRepository $ficheRequestRepository, FicheHorsForfaitRepository $ficheHorsForfaitRepository): Response
+    {
+        return $this->render('gsb/suivrePaiement.html.twig', [
+            'fiches' => $ficheRequestRepository->findAll(),
+            'ficheHorsForfait' => $ficheHorsForfaitRepository->findAll(),
+        ]);
+    }
+
     /**
      * @Route("/upload", name="app_upload")
      */
