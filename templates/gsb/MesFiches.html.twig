@@ -88,6 +88,7 @@
       <th scope="col">Nuitée</th>
       <th scope="col">Etape</th>
       <th scope="col">Km</th>
+      <th scope="col">Delete</th>
     </tr>
   </tbody>
   <tbody>
@@ -97,11 +98,21 @@
       <td> {{ fiche.nuits }}</td>
       <td>{{ fiche.etape }}</td>
       <td>{{ fiche.km }} km</td>
+      <th><a href="{{ path('delete_fichesSalarie', {'id': fiche.id })  }}">Supprimer fiche</a></th>
     </tr>
   </tbody>
 </table>
 
+
 {% endif %}
+{# {% if fiche.users_id < 0 %} #}
+{% if fiche.users_id != app.user.id %}
+
+<p>Aucune fiche au forfait trouvée</p>
+
+{% endif %}
+{% else %}
+<p>Aucune fiche au forfait trouvée</p>
 {% endfor %}
 </div>
 </section>
@@ -130,6 +141,7 @@
       <th scope="col">Date </th>
       <th scope="col">Libellé</th>
       <th scope="col">Montant</th>
+      <th scope="col">Delete</th>
     </tr>
   </tbody>
   <tbody>
@@ -137,7 +149,7 @@
       <td> {{ ficheHorsForfait.date }}</td>
       <td>{{ ficheHorsForfait.libelle }}</td>
       <td> {{ ficheHorsForfait.montant }} €</td>
-
+      <th><a href="{{ path('delete_ficheshorsSalarie', {'id': ficheHorsForfait.id })  }}">Supprimer fiche</a></th>
 
 
     </tr>
@@ -145,6 +157,15 @@
 </table>
 
 {% endif %}
+{% if ficheHorsForfait.users_id != app.user.id %}
+
+
+<p>Aucune fiche hors forfait trouvée</p>
+
+{% endif %}
+{% else %}
+<p>Aucune fiche hors forfait trouvée</p>
+
 {% endfor %}
 <br>
 </div>

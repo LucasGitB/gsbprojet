@@ -97,6 +97,8 @@
   </tbody>
 </table>
 
+{% else %}
+<p>Aucune fiche au forfait trouvée</p>
 {% endfor %}
 </div>
 </section>
@@ -108,8 +110,9 @@
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
-  {% for ficheHorsForfait in ficheHorsForfait %}
 
+
+  {% for ficheHorsForfait in ficheHorsForfait %}
 <table class="table">
   <thead>
     <h3 class="tab-color2">Frais hors Forfait</h3>
@@ -134,7 +137,12 @@
     </tr>
   </tbody>
 </table>
+{% else %}
+<p>Aucune fiche hors forfait trouvée</p>
 {% endfor %}
+
+
+
     <br>
 
 </div>

@@ -26,16 +26,18 @@
             </div>
 
             <nav>
-            <div class="visitePage">
+            
                     <a href="{{ path('app_validation') }}" class="interact profil">
-                    <i class="fas fa-tasks visitePageTextColor"></i>
-                    <li class="visitePageTextColor"> Validation Fiche </li>
+                    <i class="fas fa-tasks "></i>
+                    <li class=""> Validation Fiche </li>
                     </a>
-            </div>
+            
+                  <div class="visitePage">
                     <a href="{{ path('app_suivrePaiement') }}" class="interact profil">
                     <i class="fas fa-tasks visitePageTextColor"></i>
                     <li class="visitePageTextColor"> Suivie Fiche </li>
                     </a>
+                   </div> 
             </nav>
         </div>
 
@@ -67,7 +69,7 @@
 
 <div class="Fiches-screen">
 
-    {% for fiche in fiches %}
+    {# {% for fiche in fiches %}
 
 <table class="table">
   <thead>
@@ -98,7 +100,8 @@
 </table>
 
 {% endfor %}
-</div>
+</div> #}
+<p>Suivi non disponible</p>
 </section>
 
 <br>
@@ -108,7 +111,7 @@
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
-  {% for ficheHorsForfait in ficheHorsForfait %}
+  {# {% for ficheHorsForfait in ficheHorsForfait %}
 
 <table class="table">
   <thead>
@@ -134,7 +137,8 @@
     </tr>
   </tbody>
 </table>
-{% endfor %}
+{% endfor %} #}
+<p>Suivi non disponible</p>
     <br>
 
 </div>

@@ -158,4 +158,33 @@ class GsbController extends AbstractController
 
     }
 
+
+        //Mes fiches de frais delete
+    /**
+     * @Route("/mesfichesfrais/delete/{id}", name="delete_fichesSalarie")
+     */
+    public function suppFicheSalarié(Fiches $fiche, EntityManagerInterface $em)
+    {
+        
+        $em->remove($fiche);
+        $em->flush();
+
+        return $this->redirectToRoute('mesfiches');
+
+    }
+
+        //Mes fiches de frais delete
+    /**
+     * @Route("/mesfichesfrais/deletehors/{id}", name="delete_ficheshorsSalarie")
+     */
+    public function suppFicheHorsSalarié(FicheHorsForfait $ficheHorsForfait, EntityManagerInterface $em)
+    {
+        
+        $em->remove($ficheHorsForfait);
+        $em->flush();
+
+        return $this->redirectToRoute('mesfiches');
+
+    }
+
 }

@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Gsb{% endblock %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
 
 {% block body %}
     <header>
@@ -56,33 +57,35 @@
 
 <section class="fiches-screen">
 <div class="Fiches-screen">          
-<table class="table table-bordered ">
+<table class="table">
   <thead>
 
       <h3 class="tab-color">Frais au forfait</h3>
 {{ form_start(form) }}
   </thead>
+
   <tbody>
     <tr>
-      <th scope="col">Repas midi</th>
-      <th scope="col">Période</th>
-      <th scope="col">Nuits</th>
-      <th scope="col">Etapes</th>
-      <th scope="col">Km</th>
-      <th scope="col"></th>
+    
+      <th>{{ form_row(form.repas_midi) }}</th>
+      <th>{{ form_row(form.periode)}}</th>
+      <th>{{ form_row(form.nuits)}}</th>
+      <th>{{ form_row(form.etape)}}</th>
+      <th>{{ form_row(form.km)}}</th>
     </tr>
   </tbody>
   <tbody>
     <tr>
-      <td>{{ form_row(form.repas_midi)}}</td>
-      <td>{{ form_row(form.periode)}}</td>
-      <td>{{ form_row(form.nuits)}}</td>
-      <td>{{ form_row(form.etape)}}</td>
-      <td>{{ form_row(form.km)}}</td>
+      <td></td>
+      <td></td>
       <td><button type="submit" class="btn btn-secondary">Valider</button></td>
+      <td></td>
+      <td></td>
+      
               
     </tr>
   </tbody>
+  
 </table>
 {{ form_end(form) }}
 
@@ -90,26 +93,30 @@
 <br>
 
 
-<table class="table table-bordered">
+<table class="table">
   <thead>
 
-      <h3 class="tab-color2">Frais hors forfait</h3>
+      <h3 class="tab-color">Frais hors forfait</h3>
 {{ form_start(form2) }}
   </thead>
+
   <tbody>
     <tr>
-      <th scope="col">Date</th>
-      <th scope="col">Libellé</th>
-      <th scope="col">Montant</th>
-
+      <th class="form-group">{{ form_row(form2.date, {'attr':{'class':'form-control', 'placeholder':'jj/mm/aaaa'}} )}}</th>
+      <th class="form-group">{{ form_row(form2.libelle, {'attr':{'class':'form-control', 'placeholder':'Uber'}})}}</th>
+      <th class="form-group">{{ form_row(form2.montant, {'attr':{'class':'form-control', 'placeholder':'montant'}})}}</th>
+     
     </tr>
   </tbody>
-  <tbody>
+    <tbody>
     <tr>
-      <td>{{ form_row(form2.date)}}</td>
-      <td>{{ form_row(form2.libelle)}}</td>
-      <td>{{ form_row(form2.montant)}}</td>
+  
+      <td></td>
       <td><button type="submit" class="btn btn-secondary">Valider</button></td>
+      <td></td>
+    
+      
+              
     </tr>
   </tbody>
 </table>
