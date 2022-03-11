@@ -73,30 +73,6 @@ class Fiches
         return $this->id;
     }
 
-    // public function getPrix(): ?int
-    // {
-    //     return $this->prix;
-    // }
-
-    // public function setPrix(int $prix): self
-    // {
-    //     $this->prix = $prix;
-
-    //     return $this;
-    // }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
     public function getUsers(): ?Users
     {
         return $this->users;
