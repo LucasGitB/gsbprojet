@@ -73,17 +73,17 @@ class Fiches
         return $this->id;
     }
 
-    public function getPrix(): ?int
-    {
-        return $this->prix;
-    }
+    // public function getPrix(): ?int
+    // {
+    //     return $this->prix;
+    // }
 
-    public function setPrix(int $prix): self
-    {
-        $this->prix = $prix;
+    // public function setPrix(int $prix): self
+    // {
+    //     $this->prix = $prix;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getNom(): ?string
     {
@@ -116,7 +116,7 @@ class Fiches
 
     public function setUsers_id(int $users_id): self
     {
-        $this->prix = $users_id;
+        $this->users = $users_id;
 
         return $this;
     }
