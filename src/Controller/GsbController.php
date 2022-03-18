@@ -54,26 +54,41 @@ class GsbController extends AbstractController
 
         $fichefrais = new Fiches();
         $fichefrais->setUsers($this->getUser());
-        $fichehorsforfait = new FicheHorsForfait();
-        $fichehorsforfait->setUsers($this->getUser());
-
-
 
         $form = $this->createForm(FichesType::class, $fichefrais);
-        $form2 = $this->createForm(FicheHorsForfaitType::class, $fichehorsforfait);
         $form->handleRequest($request);
         if($request->isMethod('POST') && $form->isSubmitted() && $form->isValid()){
             $em->persist($fichefrais);
             $em->flush();
         }
+
+         return $this->render('gsb/Saisie.html.twig',[
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    //Saisie fiches hors forfait
+    /**
+     * @Route("/saisiefichesHorsForfait", name="saisiefichesHorsForfait")
+     */
+    public function saisieficheshorsforfait(Request $request, EntityManagerInterface $em)
+    {
+
+        $fichehorsforfait = new FicheHorsForfait();
+        $fichehorsforfait->setUsers($this->getUser());
+
+
+        $form2 = $this->createForm(FicheHorsForfaitType::class, $fichehorsforfait);
+
+
         $form2->handleRequest($request);
         if($request->isMethod('POST') && $form2->isSubmitted() && $form2->isValid()){
            $em->persist($fichehorsforfait);
             $em->flush();
         }
 
-         return $this->render('gsb/Saisie.html.twig',[
-            'form' => $form->createView(),
+         return $this->render('gsb/SaisieHorsForfait.html.twig',[
             'form2' => $form2->createView(),
         ]);
     }
