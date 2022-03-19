@@ -88,6 +88,7 @@
       <th scope="col">Nuitée</th>
       <th scope="col">Etape</th>
       <th scope="col">Km</th>
+      <th scope="col">modifier</th>
       <th scope="col">Supprimer</th>
     </tr>
   </tbody>
@@ -98,6 +99,7 @@
       <td> {{ fiche.nuits }}</td>
       <td>{{ fiche.etape }}</td>
       <td>{{ fiche.km }} km</td>
+      <th><a href="{{ path('modiffiches', {'id': fiche.id })  }}">modifier fiche</a></th>
       <th><a href="{{ path('delete_fichesSalarie', {'id': fiche.id })  }}">Supprimer fiche</a></th>
     </tr>
   </tbody>
@@ -141,6 +143,7 @@
       <th scope="col">Date </th>
       <th scope="col">Libellé</th>
       <th scope="col">Montant</th>
+      <th scope="col">modifier</th>
       <th scope="col">Supprimer</th>
     </tr>
   </tbody>
@@ -149,6 +152,7 @@
       <td> {{ ficheHorsForfait.date }}</td>
       <td>{{ ficheHorsForfait.libelle }}</td>
       <td> {{ ficheHorsForfait.montant }} €</td>
+      <th><a href="{{ path('modifficheshorsforfait', {'id': ficheHorsForfait.id })  }}">modifier fiche</a></th>
       <th><a href="{{ path('delete_ficheshorsSalarie', {'id': ficheHorsForfait.id })  }}">Supprimer fiche</a></th>
 
 

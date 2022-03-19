@@ -15,9 +15,18 @@ use App\Form\UploadType;
 use App\Repository\FichesRepository;
 use App\Entity\Upload;
 use App\Repository\FicheHorsForfaitRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
 class GsbController extends AbstractController
 {
+
+    private $ManagerRegistry;
+
+    public function __construct(ManagerRegistry $ManagerRegistry)
+    {
+        $this->ManagerRegistry = $ManagerRegistry;
+    }
+    
     /**
      * @Route("/gsb", name="gsb")
      */
@@ -49,9 +58,9 @@ class GsbController extends AbstractController
     /**
      * @Route("/saisiefichesfrais", name="saisiefiches")
      */
-    public function saisiefiches(Request $request, EntityManagerInterface $em)
+    public function saisiefiches(Request $request): Response
     {
-
+        $em = $this->ManagerRegistry->getManager();
         $fichefrais = new Fiches();
         $fichefrais->setUsers($this->getUser());
 
@@ -67,14 +76,56 @@ class GsbController extends AbstractController
         ]);
     }
 
+    //modifier fiches de frais
+    /**
+     * @Route("/modiffichesfrais/{id}", name="modiffiches")
+     */
+    public function modifsaisiefiches(Request $request, Fiches $fichefrais): Response
+    {
+        $em = $this->ManagerRegistry->getManager();
+
+
+        $form = $this->createForm(FichesType::class, $fichefrais);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em->persist($fichefrais);
+            $em->flush();
+        }
+
+         return $this->render('gsb/modifFiche.html.twig',[
+            'form' => $form->createView(),
+        ]);
+    }
+
+    //modifier fiches hors forfait 
+    /**
+     * @Route("/modiffichehorsforfait/{id}", name="modifficheshorsforfait")
+     */
+    public function modifficheshorsforfait(Request $request, FicheHorsForfait $fichehorsforfait): Response
+    {
+        $em = $this->ManagerRegistry->getManager();
+
+
+        $form = $this->createForm(FicheHorsForfaitType::class, $fichehorsforfait);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em->persist($fichehorsforfait);
+            $em->flush();
+        }
+
+         return $this->render('gsb/modificationFicheHorsForfait.html.twig',[
+            'form2' => $form->createView(),
+        ]);
+    }
+
 
     //Saisie fiches hors forfait
     /**
      * @Route("/saisiefichesHorsForfait", name="saisiefichesHorsForfait")
      */
-    public function saisieficheshorsforfait(Request $request, EntityManagerInterface $em)
+    public function saisieficheshorsforfait(Request $request): Response
     {
-
+        $em = $this->ManagerRegistry->getManager();
         $fichehorsforfait = new FicheHorsForfait();
         $fichehorsforfait->setUsers($this->getUser());
 
@@ -93,7 +144,76 @@ class GsbController extends AbstractController
         ]);
     }
 
-     //Validation comptable fiches
+    //details fiches au forfait pour modifier l'etat
+    /**
+     * @Route("/detailsFiche/{id}", name="detailsFiche")
+     */
+    public function info(Request $request, Fiches $fichefrais): Response
+    {
+        $em = $this->ManagerRegistry->getManager();
+
+
+        $form = $this->createForm(FichesType::class, $fichefrais);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em->persist($fichefrais);
+            $em->flush();
+        }
+
+         return $this->render('gsb/detailsFiche.html.twig',[
+            'form' => $form->createView(),
+        ]);
+    }
+
+    //details fiches hors forfait pour modifier l'etat
+    /**
+     * @Route("/detailsFichehorsforfait/{id}", name="detailsFichehorsforfait")
+     */
+    public function detailsFicheHorsForfait(Request $request, FicheHorsForfait $fichehorsforfait): Response
+    {
+        $em = $this->ManagerRegistry->getManager();
+
+
+        $form = $this->createForm(FicheHorsForfaitType::class, $fichehorsforfait);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em->persist($fichehorsforfait);
+            $em->flush();
+        }
+
+         return $this->render('gsb/detailsFicheHorsForfait.html.twig',[
+            'form2' => $form->createView(),
+        ]);
+    }
+
+    //  //Validation comptable fiches
+    // /**
+    //  * @Route("/comptable/validation", name="app_validation")
+    //  */
+    // public function validation(Request $request): Response
+    // {
+    //     $em = $this->ManagerRegistry->getManager();
+    //     $ficheRequestRepository = $em->getRepository('app:Fiches')->findAll();
+    //     $ficheHorsForfaitRepository = $em->getRepository('app:Fiches')->findAll();
+
+    //     $form = $this->createForm(FichesType::class, $fichefrais);
+    //     $form->handleRequest($request);
+    //     if($form->isSubmitted() && $form->isValid()){
+    //         $em->persist($fichefrais);
+    //         $em->flush();
+    //     }
+
+    //     return $this->render('gsb/validation.html.twig', [
+    //         'fiches' => $ficheRequestRepository,
+    //         'ficheHorsForfait' => $ficheHorsForfaitRepository,
+    //         'form' => $form->createView()
+            
+
+            
+    //     ]);
+    // }
+
+         //Validation comptable fiches
     /**
      * @Route("/comptable/validation", name="app_validation")
      */
@@ -104,6 +224,35 @@ class GsbController extends AbstractController
             'ficheHorsForfait' => $ficheHorsForfaitRepository->findAll(),
         ]);
     }
+
+
+    //  //Validation comptable fiches
+    // /**
+    //  * @Route("/comptable/validation", name="app_validation")
+    //  */
+    // public function Testvalidation(Request $request): Response
+    // {
+    //     $em = $this->ManagerRegistry->getManager();
+    //     $ficheRequestRepository = $em->getRepository('app:Fiches')->findAll();
+    //     $ficheHorsForfaitRepository = $em->getRepository('app:Fiches')->findAll();
+
+    //     $form = $this->createForm(FichesType::class, $fichefrais);
+    //     $form->handleRequest($request);
+    //     if($form->isSubmitted() && $form->isValid()){
+    //         $em->persist($fichefrais);
+    //         $em->flush();
+    //     }
+
+    //     return $this->render('gsb/validation.html.twig', [
+    //         'fiches' => $ficheRequestRepository,
+    //         'ficheHorsForfait' => $ficheHorsForfaitRepository,
+    //         'form' => $form->createView()
+            
+
+            
+    //     ]);
+    // }
+
 
      //Suivre Paiement comptable fiches
     /**
@@ -203,3 +352,6 @@ class GsbController extends AbstractController
     }
 
 }
+
+
+// Ajouter vu ticket unique en fonction de l'id dans la vu info

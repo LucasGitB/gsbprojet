@@ -81,7 +81,11 @@
       <th scope="col">Etape</th>
       <th scope="col">Km</th>
       <th scope="col">Salarié</th>
+      <th scope="col">Etat</th>
+      <th scope="col">info fiche</th>
       <th scope="col">Delete</th>
+      
+      
     </tr>
   </tbody>
   <tbody>
@@ -91,8 +95,13 @@
       <td> {{ fiche.nuits }}</td>
       <td>{{ fiche.etape }}</td>
       <td>{{ fiche.km }} km</td>
-      <td>{{app.user.nom}} {{app.user.prenom}}</td>
+      <td>{{fiche.users.nom}} {{fiche.users.prenom}}</td>
+    
+      <td>{{fiche.etat}}</td>
+      <th><a href="{{ path('detailsFiche', {'id': fiche.id })  }}">info fiche</a></th>
       <th><a href="{{ path('delete_fiches', {'id': fiche.id })  }}">Supprimer fiche</a></th>
+      
+
     </tr>
   </tbody>
 </table>
@@ -123,6 +132,8 @@
       <th scope="col">Libellé</th>
       <th scope="col">Montant</th>
       <th scope="col">Salarié</th>
+      <th scope="col">Etat</th>
+      <th scope="col">info fiche</th>
       <th scope="col">Delete</th>
     </tr>
   </tbody>
@@ -131,7 +142,8 @@
       <td> {{ ficheHorsForfait.date}}</td>
       <td>{{ ficheHorsForfait.libelle }}</td>
       <td> {{ ficheHorsForfait.montant }} €</td>
-      <th>{{app.user.nom}} {{app.user.prenom}}</th>
+      <td>{{app.user.nom}} {{app.user.prenom}}</td>
+      <th><a href="{{ path('detailsFichehorsforfait', {'id': ficheHorsForfait.id })  }}">info fiche</a></th>
       <th><a href="{{ path('delete_ficheshors', {'id': ficheHorsForfait.id })  }}">Supprimer fiche</a></th>
 
     </tr>

@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gsb{% endblock %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+    <header>
+        <a class="nav-title-white" href="{{path('gsb')}}">
+            <li>GSB - Galaxy Swiss Bourdin</li>
+        </a>
+        <a class="nav-title-white" href="{{path('app_logout')}}">
+            <li><i class="fas fa-sign-out-alt"></i> Déconnexion</li>
+        </a>
+    </header>
+
+    <section>
+
+
+        <div class="navigation interact">
+            <div class="profil">
+                <i class="far fa-user-circle fa-2x"></i>
+                <li>Bonjour {{app.user.prenom}}</li>
+                <br>
+            </div>
+
+            <nav>
+            <div class="">
+                <a href="{{path('saisiefiches')}}" class="interact profil">
+                <i class="fas fa-tasks"></i>
+                    <li class=""> Saisie fiche de frais</li>
+                </a>
+            </div>    
+                <a href="{{path('mesfiches')}}" class="interact profil">
+                <i class="fas fa-tasks"></i>
+                    <li>Mes fiches de frais</li>
+                </a>
+            
+            <div class="visitePage">
+                <a href="" class="interact profil">
+                <i class="fas fa-tasks visitePageTextColor"></i>
+                    <li class="visitePageTextColor">Modifier fiche de frais</li>
+                </a>
+            </div>
+            </nav>  
+        </div>
+
+        <div class="title">
+        <br>
+            <h1 class="title-head">Modifier fiche de frais</h1>
+
+<br>
+
+
+<section class="filter">
+<div class="periode">
+<h3 class="tab-color">PÉRIODE D'ENGAGEMENT</h3>
+<br>
+<h3>{{ "now" | date("F Y") }}</h3>
+</section>
+<br>
+<br>
+<br>
+
+
+<section class="fiches-screen">
+<div class="Fiches-screen">          
+<table class="table">
+  <thead>
+
+      <h3 class="tab-color">Frais au forfait</h3>
+{{ form_start(form) }}
+  </thead>
+
+  <tbody>
+    <tr>
+    
+      <th>{{ form_row(form.repas_midi) }}</th>
+      <th>{{ form_row(form.periode)}}</th>
+      {# <th>{{ form_label(form.periode, 'periode')}} {{ form_widget(form.periode, {'value':  ("now" | date("m/Y")) , 'attr' : {'disabled' : 'disabled'}})}}</th> #}
+      <th>{{ form_row(form.nuits)}}</th>
+      <th>{{ form_row(form.etape)}}</th>
+      <th>{{ form_row(form.km)}}</th>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><button type="submit" class="btn btn-secondary">Valider</button></td>
+      <td></td>
+      <td></td>
+      
+              
+    </tr>
+  </tbody>
+  
+</table>
+{{ form_end(form) }}
+{% endblock %}

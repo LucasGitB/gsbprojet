@@ -48,7 +48,7 @@
 <div class="periode">
 <h3 class="tab-color">PÉRIODE D'ENGAGEMENT</h3>
 <br>
-<h3>Mars 2022</h3>
+<h3>{{ "now" | date("F Y") }}</h3>
 </section>
 <br>
 <br>
@@ -69,6 +69,7 @@
     
       <th>{{ form_row(form.repas_midi) }}</th>
       <th>{{ form_row(form.periode)}}</th>
+      {# <th>{{ form_label(form.periode, 'periode')}} {{ form_widget(form.periode, {'value':  ("now" | date("m/Y")) , 'attr' : {'disabled' : 'disabled'}})}}</th> #}
       <th>{{ form_row(form.nuits)}}</th>
       <th>{{ form_row(form.etape)}}</th>
       <th>{{ form_row(form.km)}}</th>
@@ -93,8 +94,7 @@
 <br>
 
                <a href="{{path('saisiefichesHorsForfait')}}" class="interact profil">
-                
-                    Saisir fiche hors forfait
+                    <p>Voulez vous saisir une fiche de type hors forfait ?</p>
                 </a>
 {# 
 
