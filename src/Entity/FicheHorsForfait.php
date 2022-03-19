@@ -48,6 +48,11 @@ class FicheHorsForfait
      */
     private $dateAdd;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Etat::class, inversedBy="ficheHorsForfaits")
+     */
+    private $etat;
+
     public function __construct()
     {
         $this->dateAdd = new \DateTime();
@@ -126,6 +131,18 @@ class FicheHorsForfait
     public function setDateAdd(\DateTimeInterface $dateAdd): self
     {
         $this->dateAdd = $dateAdd;
+
+        return $this;
+    }
+
+    public function getEtat(): ?Etat
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(?Etat $etat): self
+    {
+        $this->etat = $etat;
 
         return $this;
     }
