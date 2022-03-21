@@ -51,9 +51,7 @@
   <div class="periode">
     <h3 class="tab-color">Période</h3>
       <br>
-    <input type="month" value="">
-
-  <button type="submit" class="btn btn-secondary">Valider</button>
+    <h3>{{ "now" | date("F Y") }}</h3>
 </section>
 
 
@@ -61,13 +59,15 @@
 <br>
 <br>
   <h3 class="title-head2">Au Forfait</h3>
-<br>         
+<br>
 
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
 
     {% for fiche in fiches %}
+
+    {% if fiche.periode == "now" | date("m/Y") %}
 
 <table class="table">
   <thead>
@@ -82,10 +82,11 @@
       <th scope="col">Km</th>
       <th scope="col">Salarié</th>
       <th scope="col">Etat</th>
-      <th scope="col">info fiche</th>
+      {# <th scope="col">info fiche</th> #}
       <th scope="col">Delete</th>
-      
-      
+      <th class="{{ (fiche.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
+
+
     </tr>
   </tbody>
   <tbody>
@@ -96,18 +97,17 @@
       <td>{{ fiche.etape }}</td>
       <td>{{ fiche.km }} km</td>
       <td>{{fiche.users.nom}} {{fiche.users.prenom}}</td>
-    
-      <td>{{fiche.etat}}</td>
-      <th><a href="{{ path('detailsFiche', {'id': fiche.id })  }}">info fiche</a></th>
+      <td><a href="{{ path('app_validationEtat', {'fichefrais': fiche.id, 'etat': 1 })  }}">Valider</a> <br> <a href="{{ path('app_validationEtat', {'fichefrais': fiche.id, 'etat': 0 })  }}">Non valide</a></td>
       <th><a href="{{ path('delete_fiches', {'id': fiche.id })  }}">Supprimer fiche</a></th>
-      
+      <th class="{{ (fiche.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
 
     </tr>
   </tbody>
 </table>
-
+{% endif %}
 {% else %}
 <p>Aucune fiche au forfait trouvée</p>
+
 {% endfor %}
 </div>
 </section>
@@ -133,8 +133,8 @@
       <th scope="col">Montant</th>
       <th scope="col">Salarié</th>
       <th scope="col">Etat</th>
-      <th scope="col">info fiche</th>
       <th scope="col">Delete</th>
+      <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
     </tr>
   </tbody>
   <tbody>
@@ -143,8 +143,9 @@
       <td>{{ ficheHorsForfait.libelle }}</td>
       <td> {{ ficheHorsForfait.montant }} €</td>
       <td>{{app.user.nom}} {{app.user.prenom}}</td>
-      <th><a href="{{ path('detailsFichehorsforfait', {'id': ficheHorsForfait.id })  }}">info fiche</a></th>
+      <td><a href="{{ path('app_validationEtatHorsForfait', {'ficheHorsForfait': ficheHorsForfait.id, 'etat': 1 })  }}">Valider</a> <br> <a href="{{ path('app_validationEtatHorsForfait', {'ficheHorsForfait': ficheHorsForfait.id, 'etat': 0 })  }}">Non valide</a></td>
       <th><a href="{{ path('delete_ficheshors', {'id': ficheHorsForfait.id })  }}">Supprimer fiche</a></th>
+      <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
 
     </tr>
   </tbody>

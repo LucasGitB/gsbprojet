@@ -67,6 +67,8 @@ class GsbController extends AbstractController
         $form = $this->createForm(FichesType::class, $fichefrais);
         $form->handleRequest($request);
         if($request->isMethod('POST') && $form->isSubmitted() && $form->isValid()){
+            $periode = new \DateTime();
+            $fichefrais->setPeriode($periode->format('m/Y'));
             $em->persist($fichefrais);
             $em->flush();
         }
@@ -213,7 +215,7 @@ class GsbController extends AbstractController
     //     ]);
     // }
 
-         //Validation comptable fiches
+    //Validation comptable fiches
     /**
      * @Route("/comptable/validation", name="app_validation")
      */
@@ -302,6 +304,7 @@ class GsbController extends AbstractController
     {
         
         $em->remove($fiche);
+        $fiche->setEtat($fiche::ETATVALIDE);
         $em->flush();
 
         return $this->redirectToRoute('app_validation');
@@ -349,6 +352,41 @@ class GsbController extends AbstractController
 
         return $this->redirectToRoute('mesfiches');
 
+    }
+
+   
+    //modifier fiches de frais
+    /**
+     * @Route("/comptable/validationFF/{etat}/{fichefrais}", name="app_validationEtat")
+     */
+    public function Etatfichesforfait(Request $request, Fiches $fichefrais, $etat): Response
+    {
+        $em = $this->ManagerRegistry->getManager();
+
+        $fichefrais->setEtat($etat);
+        $em->persist($fichefrais);
+        $em->flush();
+    
+
+         return $this->redirectToRoute('app_validation'
+        );
+    }
+    
+        //modifier fiches de frais
+    /**
+     * @Route("/comptable/validationHF/{etat}/{ficheHorsForfait}", name="app_validationEtatHorsForfait")
+     */
+    public function Etatficheshorsforfait(Request $request, FicheHorsForfait $ficheHorsForfait, $etat): Response
+    {
+        $em = $this->ManagerRegistry->getManager();
+
+        $ficheHorsForfait->setEtat($etat);
+        $em->persist($ficheHorsForfait);
+        $em->flush();
+    
+
+         return $this->redirectToRoute('app_validation'
+        );
     }
 
 }

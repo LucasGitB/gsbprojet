@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class FicheHorsForfait
 {
+    const ETATVALIDE = true;
+
+    const ETATNONVALIDE = false;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -49,13 +52,15 @@ class FicheHorsForfait
     private $dateAdd;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Etat::class, inversedBy="ficheHorsForfaits")
+     * @var boolean
+     * @ORM\column(name="etat", type="boolean")
      */
     private $etat;
 
     public function __construct()
     {
         $this->dateAdd = new \DateTime();
+        $this->etat = self::ETATNONVALIDE;
     }
 
     public function getId(): ?int
@@ -135,12 +140,12 @@ class FicheHorsForfait
         return $this;
     }
 
-    public function getEtat(): ?Etat
+    public function getEtat()
     {
         return $this->etat;
     }
 
-    public function setEtat(?Etat $etat): self
+    public function setEtat(bool $etat): self
     {
         $this->etat = $etat;
 
