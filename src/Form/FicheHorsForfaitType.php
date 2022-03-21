@@ -15,6 +15,7 @@ class FicheHorsForfaitType extends AbstractType
             ->add('date')
             ->add('libelle')
             ->add('montant')
+            ->add('periode')
         ;
     }
 

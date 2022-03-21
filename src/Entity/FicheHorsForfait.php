@@ -57,6 +57,11 @@ class FicheHorsForfait
      */
     private $etat;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $periode;
+
     public function __construct()
     {
         $this->dateAdd = new \DateTime();
@@ -148,6 +153,18 @@ class FicheHorsForfait
     public function setEtat(bool $etat): self
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getPeriode(): ?string
+    {
+        return $this->periode;
+    }
+
+    public function setPeriode(string $periode): self
+    {
+        $this->periode = $periode;
 
         return $this;
     }

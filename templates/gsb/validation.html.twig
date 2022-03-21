@@ -122,6 +122,7 @@
 
 
   {% for ficheHorsForfait in ficheHorsForfait %}
+  {% if ficheHorsForfait.periode == "now" | date("m/Y") %}
 <table class="table">
   <thead>
     <h3 class="tab-color2">Frais hors Forfait</h3>
@@ -129,6 +130,7 @@
   <tbody>
     <tr>
       <th scope="col">Date </th>
+      <th scope="col">Période</th>
       <th scope="col">Libellé</th>
       <th scope="col">Montant</th>
       <th scope="col">Salarié</th>
@@ -140,6 +142,7 @@
   <tbody>
     <tr>
       <td> {{ ficheHorsForfait.date}}</td>
+      <td>{{ ficheHorsForfait.periode }}</td>
       <td>{{ ficheHorsForfait.libelle }}</td>
       <td> {{ ficheHorsForfait.montant }} €</td>
       <td>{{app.user.nom}} {{app.user.prenom}}</td>
@@ -150,6 +153,7 @@
     </tr>
   </tbody>
 </table>
+{% endif %}
 {% else %}
 <p>Aucune fiche hors forfait trouvée</p>
 {% endfor %}

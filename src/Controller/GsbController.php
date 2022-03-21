@@ -137,6 +137,8 @@ class GsbController extends AbstractController
 
         $form2->handleRequest($request);
         if($request->isMethod('POST') && $form2->isSubmitted() && $form2->isValid()){
+            $periode = new \DateTime();
+            $fichehorsforfait->setPeriode($periode->format('m/Y'));
            $em->persist($fichehorsforfait);
             $em->flush();
         }
