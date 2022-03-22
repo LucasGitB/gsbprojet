@@ -15,6 +15,7 @@ use App\Form\UploadType;
 use App\Repository\FichesRepository;
 use App\Entity\Upload;
 use App\Repository\FicheHorsForfaitRepository;
+use App\Repository\UsersRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 class GsbController extends AbstractController
@@ -45,8 +46,8 @@ class GsbController extends AbstractController
     {
 
         return $this->render('gsb/MesFiches.html.twig', [
-            'fiches' => $ficheRequestRepository->findAll(),
-            'ficheHorsForfait' => $ficheHorsForfaitRepository->findAll(),
+            'fiches' => $ficheRequestRepository->findBy(['users_id'=>$this->getUser()]),
+            'ficheHorsForfait' => $ficheHorsForfaitRepository->findBy(['users_id'=>$this->getUser()]),
           ]);
     }
 
@@ -90,6 +91,8 @@ class GsbController extends AbstractController
         $form = $this->createForm(FichesType::class, $fichefrais);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $periode = new \DateTime();
+            $fichefrais->setPeriode($periode->format('m/Y'));
             $em->persist($fichefrais);
             $em->flush();
         }
@@ -111,6 +114,8 @@ class GsbController extends AbstractController
         $form = $this->createForm(FicheHorsForfaitType::class, $fichehorsforfait);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $periode = new \DateTime();
+            $fichehorsforfait->setPeriode($periode->format('m/Y'));
             $em->persist($fichehorsforfait);
             $em->flush();
         }
@@ -221,11 +226,12 @@ class GsbController extends AbstractController
     /**
      * @Route("/comptable/validation", name="app_validation")
      */
-    public function validation(FichesRepository $ficheRequestRepository, FicheHorsForfaitRepository $ficheHorsForfaitRepository): Response
+    public function validation(UsersRepository $UsersRepository, FichesRepository $ficheRequestRepository, FicheHorsForfaitRepository $ficheHorsForfaitRepository): Response
     {
         return $this->render('gsb/validation.html.twig', [
             'fiches' => $ficheRequestRepository->findAll(),
             'ficheHorsForfait' => $ficheHorsForfaitRepository->findAll(),
+            'users' => $UsersRepository->findAll(),
         ]);
     }
 
@@ -389,6 +395,44 @@ class GsbController extends AbstractController
 
          return $this->redirectToRoute('app_validation'
         );
+    }
+
+    /**
+     * @Route("/comptable/utilisateursdetails", name="user_show")
+     */
+    public function show(Request $request, UsersRepository $UsersRepository): Response
+    {
+        $em = $this->ManagerRegistry->getManager();
+        $fiches = $em
+            ->getRepository(Fiches::class)
+            ->findby(['users_id'=>$request->request->get('id')]);
+
+        $fichesHF = $em
+            ->getRepository(FicheHorsForfait::class)
+            ->findby(['users_id'=>$request->request->get('id')]);
+            
+        
+        
+ 
+
+        // if (!$user) {
+        //   throw $this->createNotFoundException(
+
+        
+        //   );
+
+        // if (!$student) {
+        //     throw $this->createNotFoundException(
+        //         'No student found for id '.$id
+        //     );
+        // }
+
+        return $this->render('gsb/validation.html.twig', [
+            'fiches' => $fiches,
+            'ficheHorsForfait' => $fichesHF,
+            'users' => $UsersRepository->findAll(),
+        ]);
+
     }
 
 }

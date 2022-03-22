@@ -54,9 +54,20 @@
     <h3>{{ "now" | date("F Y") }}</h3>
 </section>
 
+<br>
+<br>
 
-<br>
-<br>
+<form method="post" action="{{path('user_show')}}">
+
+<select name="id">
+    <option value="">--Please choose an option--</option>
+    {% for user in users %}
+    <option value="{{user.id}}">{{user.nom}} {{user.prenom}}</option>
+    {% endfor %}
+</select>
+<input type="submit" value="valider">
+</form>
+
 <br>
   <h3 class="title-head2">Au Forfait</h3>
 <br>
@@ -64,11 +75,8 @@
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
-
-    {% for fiche in fiches %}
-
-    {% if fiche.periode == "now" | date("m/Y") %}
-
+{% if fiches is not empty %}
+    
 <table class="table">
   <thead>
     <h3 class="tab-color">Frais Au Forfait</h3>
@@ -84,12 +92,15 @@
       <th scope="col">Etat</th>
       {# <th scope="col">info fiche</th> #}
       <th scope="col">Delete</th>
-      <th class="{{ (fiche.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
-
+      {# <th class="{{ (fiche.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th> #}
+      <th scope="col"></th>
 
     </tr>
   </tbody>
+  
   <tbody>
+  {% for fiche in fiches %}
+  {% if fiche.periode == "now" | date("m/Y") %}
     <tr>
       <td> {{ fiche.repas_midi}}</td>
       <td>{{ fiche.periode }}</td>
@@ -102,13 +113,16 @@
       <th class="{{ (fiche.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
 
     </tr>
+    {% endif %}
+    {% endfor %}
   </tbody>
 </table>
-{% endif %}
+
 {% else %}
 <p>Aucune fiche au forfait trouvée</p>
+{% endif %}
 
-{% endfor %}
+
 </div>
 </section>
 
@@ -119,10 +133,9 @@
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
+{% if ficheHorsForfait is not empty %}
 
 
-  {% for ficheHorsForfait in ficheHorsForfait %}
-  {% if ficheHorsForfait.periode == "now" | date("m/Y") %}
 <table class="table">
   <thead>
     <h3 class="tab-color2">Frais hors Forfait</h3>
@@ -136,27 +149,32 @@
       <th scope="col">Salarié</th>
       <th scope="col">Etat</th>
       <th scope="col">Delete</th>
-      <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
+      <th scope="col"></th>
+      {# <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th> #}
     </tr>
   </tbody>
   <tbody>
+    {% for ficheHorsForfait in ficheHorsForfait %}
+    {% if ficheHorsForfait.periode == "now" | date("m/Y") %}
     <tr>
-      <td> {{ ficheHorsForfait.date}}</td>
+      <td> {{ ficheHorsForfait.date }}</td>
       <td>{{ ficheHorsForfait.periode }}</td>
       <td>{{ ficheHorsForfait.libelle }}</td>
       <td> {{ ficheHorsForfait.montant }} €</td>
-      <td>{{app.user.nom}} {{app.user.prenom}}</td>
+      <td>{{ficheHorsForfait.users.nom}} {{ficheHorsForfait.users.prenom}}</td>
       <td><a href="{{ path('app_validationEtatHorsForfait', {'ficheHorsForfait': ficheHorsForfait.id, 'etat': 1 })  }}">Valider</a> <br> <a href="{{ path('app_validationEtatHorsForfait', {'ficheHorsForfait': ficheHorsForfait.id, 'etat': 0 })  }}">Non valide</a></td>
       <th><a href="{{ path('delete_ficheshors', {'id': ficheHorsForfait.id })  }}">Supprimer fiche</a></th>
       <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
 
     </tr>
+    {% endif %}
+    {% endfor %}
   </tbody>
 </table>
-{% endif %}
+
 {% else %}
 <p>Aucune fiche hors forfait trouvée</p>
-{% endfor %}
+{% endif %}
 
 
 

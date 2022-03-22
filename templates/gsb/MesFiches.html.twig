@@ -72,11 +72,7 @@
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
-
-{% for fiche in fiches %}
-
-  {% if fiche.users_id == app.user.id %}
-  
+{% if fiches is not empty %}
 <table class="table">
   <thead>
       <h3 class="tab-color">Frais Au Forfait</h3>
@@ -93,6 +89,11 @@
     </tr>
   </tbody>
   <tbody>
+{% for fiche in fiches %}
+
+  
+  
+
     <tr>
       <td> {{ fiche.repas_midi}}</td>
       <td>{{ fiche.periode }}</td>
@@ -102,20 +103,17 @@
       <th><a href="{{ path('modiffiches', {'id': fiche.id })  }}">modifier fiche</a></th>
       <th><a href="{{ path('delete_fichesSalarie', {'id': fiche.id })  }}">Supprimer fiche</a></th>
     </tr>
+
+
+{% endfor %}
   </tbody>
 </table>
-
-
-{% endif %}
-{# {% if fiche.users_id < 0 %} #}
-{% if fiche.users_id != app.user.id %}
-
-<p>Aucune fiche au forfait trouvée</p>
-
-{% endif %}
 {% else %}
 <p>Aucune fiche au forfait trouvée</p>
-{% endfor %}
+
+{% endif %}
+
+
 </div>
 </section>
 
@@ -128,10 +126,7 @@
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
-{% for ficheHorsForfait in ficheHorsForfait %}
-
-  {% if ficheHorsForfait.users_id == app.user.id %}
-
+{% if fiches is not empty %}
 <table class="table">
   <thead>
 
@@ -148,6 +143,11 @@
     </tr>
   </tbody>
   <tbody>
+{% for ficheHorsForfait in ficheHorsForfait %}
+
+
+
+
     <tr>
       <td> {{ ficheHorsForfait.date }}</td>
       <td>{{ ficheHorsForfait.libelle }}</td>
@@ -157,20 +157,15 @@
 
 
     </tr>
+  
+{% endfor %}
   </tbody>
 </table>
-
-{% endif %}
-{% if ficheHorsForfait.users_id != app.user.id %}
-
-
-<p>Aucune fiche hors forfait trouvée</p>
-
-{% endif %}
 {% else %}
-<p>Aucune fiche hors forfait trouvée</p>
+<p>Aucune fiche au forfait trouvée</p>
 
-{% endfor %}
+{% endif %}
+
 <br>
 </div>
 </section>

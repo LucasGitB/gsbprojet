@@ -76,6 +76,7 @@
 
   <tbody>
     <tr>
+     <th>{{ form_label(form2.periode, 'periode')}} {{ form_widget(form2.periode, {'value':  ("now" | date("m/Y")) , 'attr' : {'disabled' : 'disabled'}})}}</th>
       <th class="form-group">{{ form_row(form2.date, {'attr':{'class':'form-control', 'placeholder':'jj/mm/aaaa'}} )}}</th>
       <th class="form-group">{{ form_row(form2.libelle, {'attr':{'class':'form-control', 'placeholder':'Uber'}})}}</th>
       <th class="form-group">{{ form_row(form2.montant, {'attr':{'class':'form-control', 'placeholder':'montant'}})}}</th>
