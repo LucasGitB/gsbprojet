@@ -312,7 +312,6 @@ class GsbController extends AbstractController
     {
         
         $em->remove($fiche);
-        $fiche->setEtat($fiche::ETATVALIDE);
         $em->flush();
 
         return $this->redirectToRoute('app_validation');
