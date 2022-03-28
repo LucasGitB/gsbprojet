@@ -60,7 +60,7 @@
 <form method="post" action="{{path('user_show')}}">
 
 <select name="id">
-    <option value="">--Please choose an option--</option>
+    <option value="">--Choisir un salarié--</option>
     {% for user in users %}
     <option value="{{user.id}}">{{user.nom}} {{user.prenom}}</option>
     {% endfor %}
@@ -108,9 +108,9 @@
       <td>{{ fiche.etape }}</td>
       <td>{{ fiche.km }} km</td>
       <td>{{fiche.users.nom}} {{fiche.users.prenom}}</td>
-      <td><a href="{{ path('app_validationEtat', {'fichefrais': fiche.id, 'etat': 1 })  }}">Valider</a> <br> <a href="{{ path('app_validationEtat', {'fichefrais': fiche.id, 'etat': 0 })  }}">Non valide</a></td>
+      <td><a href="{{ path('app_validationEtat', {'fichefrais': fiche.id, 'etat': 1 })  }}"><i class="fa-solid fa-check fa-2x"></i></a>&nbsp;&nbsp;&nbsp;<a href="{{ path('app_validationEtat', {'fichefrais': fiche.id, 'etat': 0 })  }}"><i class="fa-solid fa-xmark fa-2x"></i></a></td>
       <th><a href="{{ path('delete_fiches', {'id': fiche.id })  }}">Supprimer fiche</a></th>
-      <th class="{{ (fiche.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
+      <th class="{{ (fiche.etat == true) ? 'etatValide' : 'etatNonValide'}}"><i class="fa-solid fa-arrows-rotate wheel"></i></th>
 
     </tr>
     {% endif %}
@@ -162,9 +162,9 @@
       <td>{{ ficheHorsForfait.libelle }}</td>
       <td> {{ ficheHorsForfait.montant }} €</td>
       <td>{{ficheHorsForfait.users.nom}} {{ficheHorsForfait.users.prenom}}</td>
-      <td><a href="{{ path('app_validationEtatHorsForfait', {'ficheHorsForfait': ficheHorsForfait.id, 'etat': 1 })  }}">Valider</a> <br> <a href="{{ path('app_validationEtatHorsForfait', {'ficheHorsForfait': ficheHorsForfait.id, 'etat': 0 })  }}">Non valide</a></td>
+      <td><a href="{{ path('app_validationEtatHorsForfait', {'ficheHorsForfait': ficheHorsForfait.id, 'etat': 1 })  }}"><i class="fa-solid fa-check fa-2x"></i></a>&nbsp;&nbsp;&nbsp;<a href="{{ path('app_validationEtatHorsForfait', {'ficheHorsForfait': ficheHorsForfait.id, 'etat': 0 })  }}"><i class="fa-solid fa-xmark fa-2x"></a></td>
       <th><a href="{{ path('delete_ficheshors', {'id': ficheHorsForfait.id })  }}">Supprimer fiche</a></th>
-      <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
+      <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"><i class="fa-solid fa-arrows-rotate wheel"></i></th>
 
     </tr>
     {% endif %}

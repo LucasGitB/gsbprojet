@@ -22,7 +22,6 @@ final class Version20220321095053 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         // $this->addSql('ALTER TABLE fiche_hors_forfait DROP FOREIGN KEY FK_5B7AF371D5E86FF');
         $this->addSql('DROP TABLE etat');
-        $this->addSql('DROP INDEX IDX_5B7AF371D5E86FF ON fiche_hors_forfait');
         $this->addSql('ALTER TABLE fiche_hors_forfait ADD etat TINYINT(1) NOT NULL, DROP etat_id');
         $this->addSql('ALTER TABLE fiches CHANGE etat etat TINYINT(1) NOT NULL');
     }
