@@ -189,7 +189,7 @@ p {
 }
 
 table {
-    background-color: rgb(247, 247, 247);
+    /* background-color: rgb(247, 247, 247); */
 }
 
 .filter {
@@ -211,7 +211,7 @@ table {
 }
 
 .periode {
-    background-color: rgb(247, 247, 247);
+    /* background-color: rgb(247, 247, 247); */
     width: 50%;
     height: 150px;
     border-bottom: 0.05em solid rgba(49, 49, 49, 0.6);
@@ -241,12 +241,13 @@ th.etatNonValide {
     animation: rotation 2s infinite linear;
 }
 
-/* .login-interface {
-    width: 20%;
-    padding: 40px;
-    background-color: antiquewhite
+/* .fa-check {
+    color: rgb(114, 241, 35);
 }
- */
+
+.fa-xmark {
+    color: rgb(241, 49, 35);
+} */
 
 @keyframes rotation {
     from {
