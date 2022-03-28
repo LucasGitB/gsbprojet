@@ -6,6 +6,8 @@ use App\Entity\FicheHorsForfait;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 
 class FicheHorsForfaitType extends AbstractType
 {
@@ -15,7 +17,10 @@ class FicheHorsForfaitType extends AbstractType
             ->add('date')
             ->add('libelle')
             ->add('montant')
-            ->add('periode')
+            ->add('periode', TextType::class, [
+                'required' => false,
+                'empty_data' => "",
+            ])
         ;
     }
 

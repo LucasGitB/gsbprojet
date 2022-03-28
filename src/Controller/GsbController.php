@@ -87,12 +87,15 @@ class GsbController extends AbstractController
     {
         $em = $this->ManagerRegistry->getManager();
 
-
+        $periode = $fichefrais->getPeriode();
+        // dd($request);
         $form = $this->createForm(FichesType::class, $fichefrais);
         $form->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()){
-            $periode = new \DateTime();
-            $fichefrais->setPeriode($periode->format('m/Y'));
+
+            $fichefrais->setperiode($periode);
+            
             $em->persist($fichefrais);
             $em->flush();
         }
@@ -110,12 +113,12 @@ class GsbController extends AbstractController
     {
         $em = $this->ManagerRegistry->getManager();
 
-
+        $periode = $fichehorsforfait->getPeriode();
         $form = $this->createForm(FicheHorsForfaitType::class, $fichehorsforfait);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $periode = new \DateTime();
-            $fichehorsforfait->setPeriode($periode->format('m/Y'));
+ 
+            $fichehorsforfait->setperiode($periode);
             $em->persist($fichehorsforfait);
             $em->flush();
         }
@@ -318,7 +321,7 @@ class GsbController extends AbstractController
 
     }
 
-        //Mes fiches de frais delete
+    //Mes fiches de frais delete
     /**
      * @Route("/comptable/validation/deletehors/{id}", name="delete_ficheshors")
      */
@@ -369,7 +372,7 @@ class GsbController extends AbstractController
     public function Etatfichesforfait(Request $request, Fiches $fichefrais, $etat): Response
     {
         $em = $this->ManagerRegistry->getManager();
-
+        
         $fichefrais->setEtat($etat);
         $em->persist($fichefrais);
         $em->flush();
