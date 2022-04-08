@@ -67,12 +67,13 @@
   <tbody>
     <tr>
     
-      <th>{{ form_row(form.repas_midi) }}</th>
+      <th>{{ form_row(form.repas_midi, {'attr':{'placeholder':'0'}}) }}</th>
       {# <th>{{ form_row(form.periode)}}</th> #}
       <th>{{ form_label(form.periode, 'periode')}} {{ form_widget(form.periode, {'value':  ("now" | date("m/Y")) , 'attr' : {'disabled' : 'disabled'}})}}</th>
-      <th>{{ form_row(form.nuits)}}</th>
-      <th>{{ form_row(form.etape)}}</th>
-      <th>{{ form_row(form.km)}}</th>
+      <th>{{ form_row(form.nuits,  {'attr':{'placeholder':'0'}})}}</th>
+      <th>{{ form_row(form.etape, {'attr':{'placeholder':'0'}})}}</th>
+      <th>{{ form_row(form.km, {'attr':{'placeholder':'0'}})}}</th>
+      <th></th>
     </tr>
   </tbody>
   <tbody>

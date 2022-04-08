@@ -229,16 +229,36 @@ table {
 }
 
 th.etatValide {
-    background-color: rgb(85, 230, 18) !important;
+    background-color: #55fe7c !important;
 }
 
 th.etatNonValide {
-    background-color: rgb(253, 49, 49) !important;
+    background-color: #f5505e !important;
 
 }
 
 .wheel {
     animation: rotation 2s infinite linear;
+}
+
+.saisieHF {
+    display: flex;
+    align-items: center;
+}
+
+.filtrage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.liste-name {
+    width: 200px;
+}
+
+.btn {
+    background-color: rgb(4, 4, 148) !important;
+    color: white !important;
 }
 
 /* .fa-check {

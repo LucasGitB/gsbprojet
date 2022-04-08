@@ -57,17 +57,21 @@
 <br>
 <br>
 
+<section class="filtrage">
 <form method="post" action="{{path('user_show')}}">
-
-<select name="id">
+<div class="liste-name">
+<select class="form-select"  name="id">
     <option value="">--Choisir un salarié--</option>
     {% for user in users %}
     <option value="{{user.id}}">{{user.nom}} {{user.prenom}}</option>
     {% endfor %}
 </select>
-<input type="submit" value="valider">
+</div>
+<button type="submit" class="btn">Valider</button>
 </form>
 
+
+</section>
 <br>
   <h3 class="title-head2">Au Forfait</h3>
 <br>
@@ -91,7 +95,7 @@
       <th scope="col">Salarié</th>
       <th scope="col">Etat</th>
       {# <th scope="col">info fiche</th> #}
-      <th scope="col">Delete</th>
+      <th scope="col">Supprimer</th>
       {# <th class="{{ (fiche.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th> #}
       <th scope="col"></th>
 
@@ -148,7 +152,7 @@
       <th scope="col">Montant</th>
       <th scope="col">Salarié</th>
       <th scope="col">Etat</th>
-      <th scope="col">Delete</th>
+      <th scope="col">Supprimer</th>
       <th scope="col"></th>
       {# <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th> #}
     </tr>

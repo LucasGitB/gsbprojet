@@ -43,12 +43,11 @@
 
 <br>
 
-
 <section class="filter">
 <div class="periode">
 <h3 class="tab-color">PÉRIODE D'ENGAGEMENT</h3>
 <br>
-<h3>Mars 2022</h3>
+<h3>{{ "now" | date("F Y") }}</h3>
 </section>
 <br>
 <br>
@@ -60,7 +59,7 @@
 
 
 
-<table class="table">
+<table class="table ">
   <thead>
 
       <h3 class="tab-color">Frais hors forfait</h3>
@@ -73,28 +72,19 @@
       <th class="form-group">{{ form_row(form2.date, {'attr':{'class':'form-control', 'placeholder':'jj/mm/aaaa'}} )}}</th>
       <th class="form-group">{{ form_row(form2.libelle, {'attr':{'class':'form-control', 'placeholder':'Uber'}})}}</th>
       <th class="form-group">{{ form_row(form2.montant, {'attr':{'class':'form-control', 'placeholder':'montant'}})}}</th>
-     
-    </tr>
-  </tbody>
-    <tbody>
-    <tr>
-  
-      <td></td>
-      <td><button type="submit" class="btn btn-secondary">Valider</button></td>
-      <td></td>
     
-      
-              
+
     </tr>
   </tbody>
 </table>
+<button type="submit" class="btn btn-secondary">Valider</button>
 
 {{ form_end(form2) }}
 <div> 
 
                <a href="{{path('saisiefiches')}}" class="interact profil">
                 
-                    Saisir fiche au forfait
+                    Saisir fiche au forfait ?
                 </a>
 
 

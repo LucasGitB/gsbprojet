@@ -26,25 +26,24 @@
             </div>
 
             <nav>
-            
+            <div>
                     <a href="{{ path('app_validation') }}" class="interact profil">
-                    <i class="fas fa-tasks "></i>
-                    <li class=""> Validation Fiche </li>
+                    <i class="fas fa-tasks"></i>
+                    <li> Validation Fiche </li>
                     </a>
-            
-                  <div class="visitePage">
+            </div>
+            <div class="visitePage">
                     <a href="{{ path('app_suivrePaiement') }}" class="interact profil">
                     <i class="fas fa-tasks visitePageTextColor"></i>
-                    <li class="visitePageTextColor"> Suivie Fiche </li>
+                    <li class="visitePageTextColor"> Suivi Fiche </li>
                     </a>
-                   </div> 
             </nav>
         </div>
 
 
   <div class="title">
     <br>
-      <h1 class="title-head">Suivre le paiement fiche de frais</h1>
+      <h1 class="title-head">Suivi des frais validé/non validé</h1>
   <div>
 
 <br>
@@ -53,27 +52,25 @@
   <div class="periode">
     <h3 class="tab-color">Période</h3>
       <br>
-    <input type="month" value="">
-
-  <button type="submit" class="btn btn-secondary">Valider</button>
+    <h3>{{ "now" | date("F Y") }}</h3>
 </section>
 
+<br>
+<br>
+
 
 <br>
-<br>
-<br>
   <h3 class="title-head2">Au Forfait</h3>
-<br>         
+<br>
 
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
-
-    {# {% for fiche in fiches %}
-
+{% if fiches is not empty %}
+    
 <table class="table">
   <thead>
-    <h3 class="tab-color">Frais Au Forfait</h3>
+    <h3 class="tab-color">Frais Au Forfait : Validé</h3>
   </thead>
   <tbody>
     <tr>
@@ -83,62 +80,179 @@
       <th scope="col">Etape</th>
       <th scope="col">Km</th>
       <th scope="col">Salarié</th>
-      <th scope="col">Delete</th>
+      <th scope="col">Etat</th>
+
     </tr>
   </tbody>
+  
   <tbody>
+  {% for fiche in fiches %}
+  {% if fiche.periode == "now" | date("m/Y") and fiche.etat == 1 %}
     <tr>
       <td> {{ fiche.repas_midi}}</td>
       <td>{{ fiche.periode }}</td>
       <td> {{ fiche.nuits }}</td>
       <td>{{ fiche.etape }}</td>
       <td>{{ fiche.km }} km</td>
-      <td>{{app.user.nom}} {{app.user.prenom}}</td>
-      <th><a href="{{ path('delete_fiches', {'id': fiche.id })  }}">Supprimer fiche</a></th>
+      <td>{{fiche.users.nom}} {{fiche.users.prenom}}</td>
+      <th class="{{ (fiche.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
+
     </tr>
+    {% endif %}
+    {% endfor %}
   </tbody>
 </table>
 
-{% endfor %}
-</div> #}
-<p>Suivi non disponible</p>
+{% else %}
+<p>Aucune fiche au forfait trouvée</p>
+{% endif %}
+
+
+<br>
+<br>
+{% if fiches is not empty %}
+    
+<table class="table">
+  <thead>
+    <h3 class="tab-color">Frais Au Forfait : Non Validé</h3>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="col">Repas midi </th>
+      <th scope="col">Période</th>
+      <th scope="col">Nuitée</th>
+      <th scope="col">Etape</th>
+      <th scope="col">Km</th>
+      <th scope="col">Salarié</th>
+      <th scope="col">Etat</th>
+
+    </tr>
+  </tbody>
+  
+  <tbody>
+  {% for fiche in fiches %}
+  {% if fiche.periode == "now" | date("m/Y") and fiche.etat == 0 %}
+    <tr>
+      <td> {{ fiche.repas_midi}}</td>
+      <td>{{ fiche.periode }}</td>
+      <td> {{ fiche.nuits }}</td>
+      <td>{{ fiche.etape }}</td>
+      <td>{{ fiche.km }} km</td>
+      <td>{{fiche.users.nom}} {{fiche.users.prenom}}</td>
+      <th class="{{ (fiche.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
+
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<p>Aucune fiche au forfait trouvée</p>
+{% endif %}
+
+
+</div>
 </section>
 
 <br>
 <br>
+
+
     <h3 class="title-head2">Hors Forfait</h3>
 <br>
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
-  {# {% for ficheHorsForfait in ficheHorsForfait %}
+{% if ficheHorsForfait is not empty %}
+
 
 <table class="table">
   <thead>
-    <h3 class="tab-color2">Frais hors Forfait</h3>
+    <h3 class="tab-color2">Frais hors Forfait : Validé</h3>
   </thead>
   <tbody>
     <tr>
       <th scope="col">Date </th>
+      <th scope="col">Période</th>
       <th scope="col">Libellé</th>
       <th scope="col">Montant</th>
       <th scope="col">Salarié</th>
-      <th scope="col">Delete</th>
+      <th scope="col">Etat</th>
+      {# <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th> #}
     </tr>
   </tbody>
   <tbody>
+    {% for ficheHorsForfait in ficheHorsForfait %}
+
+    {% if ficheHorsForfait.periode == "now" | date("m/Y") and ficheHorsForfait.etat == 1 %}
     <tr>
-      <td> {{ ficheHorsForfait.date}}</td>
+      <td> {{ ficheHorsForfait.date }}</td>
+      <td>{{ ficheHorsForfait.periode }}</td>
       <td>{{ ficheHorsForfait.libelle }}</td>
       <td> {{ ficheHorsForfait.montant }} €</td>
-      <th>{{app.user.nom}} {{app.user.prenom}}</th>
-      <th><a href="{{ path('delete_ficheshors', {'id': ficheHorsForfait.id })  }}">Supprimer fiche</a></th>
+      <td>{{ficheHorsForfait.users.nom}} {{ficheHorsForfait.users.prenom}}</td>
+      <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
 
     </tr>
+    {% endif %}
+    
+    {% endfor %}
   </tbody>
 </table>
-{% endfor %} #}
-<p>Suivi non disponible</p>
+
+{% else %}
+<p>Aucune fiche hors forfait trouvée</p>
+{% endif %}
+
+
+
+    <br>
+
+
+{% if ficheHorsForfait is not empty %}
+
+
+<table class="table">
+  <thead>
+    <h3 class="tab-color2">Frais hors Forfait : Non Validé</h3>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="col">Date </th>
+      <th scope="col">Période</th>
+      <th scope="col">Libellé</th>
+      <th scope="col">Montant</th>
+      <th scope="col">Salarié</th>
+      <th scope="col">Etat</th>
+      {# <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th> #}
+    </tr>
+  </tbody>
+  <tbody>
+    {% for ficheHorsForfait in ficheHorsForfait %}
+
+    {% if ficheHorsForfait.periode == "now" | date("m/Y") and ficheHorsForfait.etat == 0 %}
+    <tr>
+      <td> {{ ficheHorsForfait.date }}</td>
+      <td>{{ ficheHorsForfait.periode }}</td>
+      <td>{{ ficheHorsForfait.libelle }}</td>
+      <td> {{ ficheHorsForfait.montant }} €</td>
+      <td>{{ficheHorsForfait.users.nom}} {{ficheHorsForfait.users.prenom}}</td>
+      <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
+
+    </tr>
+    {% endif %}
+    
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<p>Aucune fiche hors forfait trouvée</p>
+{% endif %}
+
+
+
     <br>
 
 </div>

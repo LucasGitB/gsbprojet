@@ -86,6 +86,7 @@
       <th scope="col">Km</th>
       <th scope="col">modifier</th>
       <th scope="col">Supprimer</th>
+      <th scope"col">Etat</th>
     </tr>
   </tbody>
   <tbody>
@@ -102,6 +103,7 @@
       <td>{{ fiche.km }} km</td>
       <th><a href="{{ path('modiffiches', {'id': fiche.id })  }}">modifier fiche</a></th>
       <th><a href="{{ path('delete_fichesSalarie', {'id': fiche.id })  }}">Supprimer fiche</a></th>
+      <th class="{{ (fiche.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
     </tr>
 
 
@@ -140,6 +142,7 @@
       <th scope="col">Montant</th>
       <th scope="col">modifier</th>
       <th scope="col">Supprimer</th>
+      <th scope"col">Etat</th>
     </tr>
   </tbody>
   <tbody>
@@ -154,6 +157,7 @@
       <td> {{ ficheHorsForfait.montant }} €</td>
       <th><a href="{{ path('modifficheshorsforfait', {'id': ficheHorsForfait.id })  }}">modifier fiche</a></th>
       <th><a href="{{ path('delete_ficheshorsSalarie', {'id': ficheHorsForfait.id })  }}">Supprimer fiche</a></th>
+      <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
 
 
     </tr>
