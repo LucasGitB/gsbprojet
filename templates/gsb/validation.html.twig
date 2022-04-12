@@ -5,7 +5,7 @@
 {% block body %}
 
 
-
+{# Menu de navigation #}
 <header>
       <a class="nav-title-white" href="{{path('gsb')}}">
             <li>GSB - Galaxy Swiss Bourdin</li>
@@ -17,7 +17,7 @@
 
     <section>
 
-
+{# Tableau de bord #}
         <div class="navigation interact">
             <div class="profil">
                 <i class="far fa-user-circle fa-2x"></i>
@@ -47,7 +47,7 @@
 
 <br>
 <section class="filter">
-
+{# Affichage de la période en cours #}
   <div class="periode">
     <h3 class="tab-color">Période</h3>
       <br>
@@ -57,6 +57,7 @@
 <br>
 <br>
 
+{# Filtrer les visiteurs #}
 <section class="filtrage">
 <form method="post" action="{{path('user_show')}}">
 <div class="liste-name">
@@ -75,7 +76,7 @@
 <br>
   <h3 class="title-head2">Au Forfait</h3>
 <br>
-
+{# Affichage fiches de frais au forfait #}
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
@@ -94,9 +95,7 @@
       <th scope="col">Km</th>
       <th scope="col">Salarié</th>
       <th scope="col">Etat</th>
-      {# <th scope="col">info fiche</th> #}
       <th scope="col">Supprimer</th>
-      {# <th class="{{ (fiche.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th> #}
       <th scope="col"></th>
 
     </tr>
@@ -139,7 +138,7 @@
 <div class="Fiches-screen">
 {% if ficheHorsForfait is not empty %}
 
-
+{# Affichage fiche de frais hors forfait #}
 <table class="table">
   <thead>
     <h3 class="tab-color2">Frais hors Forfait</h3>
@@ -154,7 +153,6 @@
       <th scope="col">Etat</th>
       <th scope="col">Supprimer</th>
       <th scope="col"></th>
-      {# <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th> #}
     </tr>
   </tbody>
   <tbody>
@@ -179,8 +177,6 @@
 {% else %}
 <p>Aucune fiche hors forfait trouvée</p>
 {% endif %}
-
-
 
     <br>
 

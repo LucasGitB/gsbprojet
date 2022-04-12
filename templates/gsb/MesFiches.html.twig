@@ -3,6 +3,7 @@
 {% block title %}Gsb{% endblock %}
 
 {% block body %}
+{# Menu de navigation #}
 <header>
         <a class="nav-title-white" href="{{path('gsb')}}">
             <li>GSB - Galaxy Swiss Bourdin</li>
@@ -14,13 +15,13 @@
 
     <section>
 
-
-                <div class="navigation interact">
+{# Tableau de bord #}
+          <div class="navigation interact">
             <div class="profil">
                 <i class="far fa-user-circle fa-2x"></i>
                 <li>Bonjour {{app.user.prenom}}</li>
                 <br>
-            </div>
+          </div>
 
             <nav>
  
@@ -44,31 +45,21 @@
 
 
 <br>
-
-
-
-
-
-
-
 <br>
-<section class="filter">
 
+{# Affichage de la période en cours #}
+<section class="filter">
   <div class="periode">
     <h3 class="tab-color">Période</h3>
       <br>
     <h3>{{ "now" | date("F Y") }}</h3>
-</section
-
-
-
-
+</section>
 <br>
-<br>
+  <br>
 <br>
   <h3 class="title-head2">Au Forfait</h3>
 <br>
-
+{# Affichage des fiches au forfait #}
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
@@ -92,9 +83,6 @@
   <tbody>
 {% for fiche in fiches %}
 
-  
-  
-
     <tr>
       <td> {{ fiche.repas_midi}}</td>
       <td>{{ fiche.periode }}</td>
@@ -105,7 +93,6 @@
       <th><a href="{{ path('delete_fichesSalarie', {'id': fiche.id })  }}">Supprimer fiche</a></th>
       <th class="{{ (fiche.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
     </tr>
-
 
 {% endfor %}
   </tbody>
@@ -125,6 +112,7 @@
 <br>
 
 
+{# Affichage des fiches hors forfait #}
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
@@ -147,10 +135,6 @@
   </tbody>
   <tbody>
 {% for ficheHorsForfait in ficheHorsForfait %}
-
-
-
-
     <tr>
       <td> {{ ficheHorsForfait.date }}</td>
       <td>{{ ficheHorsForfait.libelle }}</td>
@@ -158,10 +142,7 @@
       <th><a href="{{ path('modifficheshorsforfait', {'id': ficheHorsForfait.id })  }}">modifier fiche</a></th>
       <th><a href="{{ path('delete_ficheshorsSalarie', {'id': ficheHorsForfait.id })  }}">Supprimer fiche</a></th>
       <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th>
-
-
     </tr>
-  
 {% endfor %}
   </tbody>
 </table>

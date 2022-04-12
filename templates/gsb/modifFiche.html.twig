@@ -4,6 +4,7 @@
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
 {% block body %}
+    {# Menu de navigation #}
     <header>
         <a class="nav-title-white" href="{{path('gsb')}}">
             <li>GSB - Galaxy Swiss Bourdin</li>
@@ -15,7 +16,7 @@
 
     <section>
 
-
+        {# Tableau de bord #}
         <div class="navigation interact">
             <div class="profil">
                 <i class="far fa-user-circle fa-2x"></i>
@@ -50,30 +51,29 @@
 
 <br>
 
-
+{# Affichage de la période en cours #}
 <section class="filter">
-<div class="periode">
-<h3 class="tab-color">PÉRIODE D'ENGAGEMENT</h3>
-<br>
-<h3>{{ "now" | date("F Y") }}</h3>
+    <div class="periode">
+        <h3 class="tab-color">PÉRIODE D'ENGAGEMENT</h3>
+            <br>
+        <h3>{{ "now" | date("F Y") }}</h3>
 </section>
-<br>
-<br>
-<br>
+    <br>
+        <br>
+    <br>
 
-
+{# Affichage de la fiche à modifier #}
 <section class="fiches-screen">
-<div class="Fiches-screen">          
-<table class="table">
-  <thead>
+    <div class="Fiches-screen">          
+        <table class="table">
+            <thead>
 
-      <h3 class="tab-color">Frais au forfait</h3>
-{{ form_start(form) }}
+            <h3 class="tab-color">Frais au forfait</h3>
+                {{ form_start(form) }}
   </thead>
 
   <tbody>
     <tr>
-    
       <th>{{ form_row(form.repas_midi) }}</th>
       <th>{{ form_label(form.periode, 'periode')}} {{ form_widget(form.periode, {'value':  ("now" | date("m/Y")) , 'attr' : {'disabled' : 'disabled'}})}}</th>
       <th>{{ form_row(form.nuits)}}</th>
@@ -81,18 +81,9 @@
       <th>{{ form_row(form.km)}}</th>
     </tr>
   </tbody>
-  <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td><button type="submit" class="btn btn-secondary">Valider</button></td>
-      <td></td>
-      <td></td>
-      
-              
-    </tr>
-  </tbody>
+
   
 </table>
+<button type="submit" class="btn btn-secondary">Valider</button>
 {{ form_end(form) }}
 {% endblock %}

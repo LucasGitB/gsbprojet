@@ -4,7 +4,7 @@
 
 {% block body %}
 
-
+{# Menu de navigation #}
 
 <header>
       <a class="nav-title-white" href="{{path('gsb')}}">
@@ -17,7 +17,7 @@
 
     <section>
 
-
+{# Tableau de bord #}
         <div class="navigation interact">
             <div class="profil">
                 <i class="far fa-user-circle fa-2x"></i>
@@ -49,6 +49,7 @@
 <br>
 <section class="filter">
 
+{# Affichage de la période en cours #}
   <div class="periode">
     <h3 class="tab-color">Période</h3>
       <br>
@@ -65,6 +66,7 @@
 
 <section class="fiches-screen">
 
+{# Affichage des fiches au forfait validé #}
 <div class="Fiches-screen">
 {% if fiches is not empty %}
     
@@ -110,6 +112,8 @@
 
 <br>
 <br>
+
+{# Affichage des fiches au forfait non validé #}
 {% if fiches is not empty %}
     
 <table class="table">
@@ -130,6 +134,7 @@
   </tbody>
   
   <tbody>
+
   {% for fiche in fiches %}
   {% if fiche.periode == "now" | date("m/Y") and fiche.etat == 0 %}
     <tr>
@@ -161,6 +166,7 @@
 
     <h3 class="title-head2">Hors Forfait</h3>
 <br>
+{# Affichage des fiches hors forfait validé #}
 <section class="fiches-screen">
 
 <div class="Fiches-screen">
@@ -179,7 +185,6 @@
       <th scope="col">Montant</th>
       <th scope="col">Salarié</th>
       <th scope="col">Etat</th>
-      {# <th class="{{ (ficheHorsForfait.etat == true) ? 'etatValide' : 'etatNonValide'}}"></th> #}
     </tr>
   </tbody>
   <tbody>
@@ -212,7 +217,7 @@
 
 {% if ficheHorsForfait is not empty %}
 
-
+{# Affichage des fiches hors forfait non validé #}
 <table class="table">
   <thead>
     <h3 class="tab-color2">Frais hors Forfait : Non Validé</h3>

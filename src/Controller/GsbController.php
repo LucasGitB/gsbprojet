@@ -38,7 +38,7 @@ class GsbController extends AbstractController
         ]);
     }
 
-    //Mes fiches de frais
+    //Mes fiches de frais au forfait et hors forfait
     /**
      * @Route("/mesfichesfrais", name="mesfiches")
      */
@@ -51,11 +51,7 @@ class GsbController extends AbstractController
           ]);
     }
 
-   
-
-
-
-    //Saisie fiches de frais
+    //Saisie fiches de frais au forfait
     /**
      * @Route("/saisiefichesfrais", name="saisiefiches")
      */
@@ -128,7 +124,6 @@ class GsbController extends AbstractController
         ]);
     }
 
-
     //Saisie fiches hors forfait
     /**
      * @Route("/saisiefichesHorsForfait", name="saisiefichesHorsForfait")
@@ -139,9 +134,7 @@ class GsbController extends AbstractController
         $fichehorsforfait = new FicheHorsForfait();
         $fichehorsforfait->setUsers($this->getUser());
 
-
         $form2 = $this->createForm(FicheHorsForfaitType::class, $fichehorsforfait);
-
 
         $form2->handleRequest($request);
         if($request->isMethod('POST') && $form2->isSubmitted() && $form2->isValid()){
@@ -156,7 +149,7 @@ class GsbController extends AbstractController
         ]);
     }
 
-    //details fiches au forfait pour modifier l'etat
+    //Details fiches au forfait pour modifier l'etat
     /**
      * @Route("/detailsFiche/{id}", name="detailsFiche")
      */
@@ -177,7 +170,7 @@ class GsbController extends AbstractController
         ]);
     }
 
-    //details fiches hors forfait pour modifier l'etat
+    //Details fiches hors forfait pour modifier l'etat
     /**
      * @Route("/detailsFichehorsforfait/{id}", name="detailsFichehorsforfait")
      */
@@ -198,33 +191,6 @@ class GsbController extends AbstractController
         ]);
     }
 
-    //  //Validation comptable fiches
-    // /**
-    //  * @Route("/comptable/validation", name="app_validation")
-    //  */
-    // public function validation(Request $request): Response
-    // {
-    //     $em = $this->ManagerRegistry->getManager();
-    //     $ficheRequestRepository = $em->getRepository('app:Fiches')->findAll();
-    //     $ficheHorsForfaitRepository = $em->getRepository('app:Fiches')->findAll();
-
-    //     $form = $this->createForm(FichesType::class, $fichefrais);
-    //     $form->handleRequest($request);
-    //     if($form->isSubmitted() && $form->isValid()){
-    //         $em->persist($fichefrais);
-    //         $em->flush();
-    //     }
-
-    //     return $this->render('gsb/validation.html.twig', [
-    //         'fiches' => $ficheRequestRepository,
-    //         'ficheHorsForfait' => $ficheHorsForfaitRepository,
-    //         'form' => $form->createView()
-            
-
-            
-    //     ]);
-    // }
-
     //Validation comptable fiches
     /**
      * @Route("/comptable/validation", name="app_validation")
@@ -238,36 +204,7 @@ class GsbController extends AbstractController
         ]);
     }
 
-
-    //  //Validation comptable fiches
-    // /**
-    //  * @Route("/comptable/validation", name="app_validation")
-    //  */
-    // public function Testvalidation(Request $request): Response
-    // {
-    //     $em = $this->ManagerRegistry->getManager();
-    //     $ficheRequestRepository = $em->getRepository('app:Fiches')->findAll();
-    //     $ficheHorsForfaitRepository = $em->getRepository('app:Fiches')->findAll();
-
-    //     $form = $this->createForm(FichesType::class, $fichefrais);
-    //     $form->handleRequest($request);
-    //     if($form->isSubmitted() && $form->isValid()){
-    //         $em->persist($fichefrais);
-    //         $em->flush();
-    //     }
-
-    //     return $this->render('gsb/validation.html.twig', [
-    //         'fiches' => $ficheRequestRepository,
-    //         'ficheHorsForfait' => $ficheHorsForfaitRepository,
-    //         'form' => $form->createView()
-            
-
-            
-    //     ]);
-    // }
-
-
-     //Suivre Paiement comptable fiches
+    //Suivre Paiement comptable fiches
     /**
      * @Route("/comptable/suivrePaiement", name="app_suivrePaiement")
      */
@@ -279,46 +216,16 @@ class GsbController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/upload", name="app_upload")
-     */
-    public function upload(Request $request, EntityManagerInterface $em)
-    {
-        $upload = new Upload();
-        $form = $this->createForm(UploadType::class, $upload);
-
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
-            $file = $upload->getName();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move($this->getParameter('upload_directory'), $fileName);
-            $upload->setName($fileName);
-
-            //return $this->redirectToRoute('');
-        }
-
-        if($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
-            $em->persist($upload);
-            $em->flush();
-        }
-
-        return $this->render('gsb/upload.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
     //Mes fiches de frais delete
     /**
      * @Route("/comptable/validation/delete/{id}", name="delete_fiches")
      */
     public function suppFiche(Fiches $fiche, EntityManagerInterface $em)
     {
-        
         $em->remove($fiche);
         $em->flush();
 
         return $this->redirectToRoute('app_validation');
-
     }
 
     //Mes fiches de frais delete
@@ -327,45 +234,37 @@ class GsbController extends AbstractController
      */
     public function suppFicheHors(FicheHorsForfait $ficheHorsForfait, EntityManagerInterface $em)
     {
-        
         $em->remove($ficheHorsForfait);
         $em->flush();
 
         return $this->redirectToRoute('app_validation');
-
     }
 
-
-        //Mes fiches de frais delete
+    //Mes fiches de frais au forfait delete
     /**
      * @Route("/mesfichesfrais/delete/{id}", name="delete_fichesSalarie")
      */
     public function suppFicheSalarié(Fiches $fiche, EntityManagerInterface $em)
     {
-        
         $em->remove($fiche);
         $em->flush();
 
         return $this->redirectToRoute('mesfiches');
-
     }
 
-        //Mes fiches de frais delete
+    //Mes fiches hors forfait delete
     /**
      * @Route("/mesfichesfrais/deletehors/{id}", name="delete_ficheshorsSalarie")
      */
     public function suppFicheHorsSalarié(FicheHorsForfait $ficheHorsForfait, EntityManagerInterface $em)
     {
-        
         $em->remove($ficheHorsForfait);
         $em->flush();
 
         return $this->redirectToRoute('mesfiches');
-
     }
 
-   
-    //modifier fiches de frais
+    //Modifier fiches de frais au forfait
     /**
      * @Route("/comptable/validationFF/{etat}/{fichefrais}", name="app_validationEtat")
      */
@@ -382,7 +281,7 @@ class GsbController extends AbstractController
         );
     }
     
-        //modifier fiches de frais
+    //Mdifier fiches de frais hors forfait
     /**
      * @Route("/comptable/validationHF/{etat}/{ficheHorsForfait}", name="app_validationEtatHorsForfait")
      */
@@ -394,11 +293,10 @@ class GsbController extends AbstractController
         $em->persist($ficheHorsForfait);
         $em->flush();
     
-
-         return $this->redirectToRoute('app_validation'
-        );
+         return $this->redirectToRoute('app_validation');
     }
 
+    //Filter par utilisateur lors de la validation des fiches par le comptable
     /**
      * @Route("/comptable/utilisateursdetails", name="user_show")
      */
@@ -412,22 +310,6 @@ class GsbController extends AbstractController
         $fichesHF = $em
             ->getRepository(FicheHorsForfait::class)
             ->findby(['users_id'=>$request->request->get('id')]);
-            
-        
-        
- 
-
-        // if (!$user) {
-        //   throw $this->createNotFoundException(
-
-        
-        //   );
-
-        // if (!$student) {
-        //     throw $this->createNotFoundException(
-        //         'No student found for id '.$id
-        //     );
-        // }
 
         return $this->render('gsb/validation.html.twig', [
             'fiches' => $fiches,
@@ -438,6 +320,3 @@ class GsbController extends AbstractController
     }
 
 }
-
-
-// Ajouter vu ticket unique en fonction de l'id dans la vu info
