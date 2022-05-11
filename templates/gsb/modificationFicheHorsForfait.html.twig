@@ -72,7 +72,11 @@
       <h3 class="tab-color">Frais hors forfait</h3>
 {{ form_start(form2) }}
   </thead>
-
+  {% for message in app.flashes('success') %}
+      <div class="flash-info">
+          {{ message }}
+      </div>
+  {% endfor %}
   <tbody>
     <tr>
      <th>{{ form_label(form2.periode, 'periode')}} {{ form_widget(form2.periode, {'value':  ("now" | date("m/Y")) , 'attr' : {'disabled' : 'disabled'}})}}</th>

@@ -68,6 +68,7 @@ class GsbController extends AbstractController
             $fichefrais->setPeriode($periode->format('m/Y'));
             $em->persist($fichefrais);
             $em->flush();
+            $this->addFlash('success', 'Votre fiche de frais au forfait a bien été créé');
         }
 
          return $this->render('gsb/Saisie.html.twig',[
@@ -86,7 +87,7 @@ class GsbController extends AbstractController
         $periode = $fichefrais->getPeriode();
         // dd($request);
         $form = $this->createForm(FichesType::class, $fichefrais);
-        $form->handleRequest($request);
+        $form->handleRequest($request);     
 
         if($form->isSubmitted() && $form->isValid()){
 
@@ -94,6 +95,7 @@ class GsbController extends AbstractController
             
             $em->persist($fichefrais);
             $em->flush();
+            $this->addFlash('success', 'Votre fiche de frais au forfait a bien été mise à jour !');
         }
 
          return $this->render('gsb/modifFiche.html.twig',[
@@ -117,6 +119,7 @@ class GsbController extends AbstractController
             $fichehorsforfait->setperiode($periode);
             $em->persist($fichehorsforfait);
             $em->flush();
+            $this->addFlash('success', 'Votre fiche de frais hors forfait a bien été mise à jour !');
         }
 
          return $this->render('gsb/modificationFicheHorsForfait.html.twig',[
@@ -142,6 +145,7 @@ class GsbController extends AbstractController
             $fichehorsforfait->setPeriode($periode->format('m/Y'));
            $em->persist($fichehorsforfait);
             $em->flush();
+            $this->addFlash('success', 'Votre fiche de frais hors forfait a bien été créé');
         }
 
          return $this->render('gsb/SaisieHorsForfait.html.twig',[

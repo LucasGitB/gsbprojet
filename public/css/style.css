@@ -260,6 +260,13 @@ th.etatNonValide {
     color: white !important;
 }
 
+.flash-info {
+    background-color: #b0ffc3;
+    color: #068123;
+    margin: 10px;
+    border-radius: 30px;
+}
+
 /* .fa-check {
     color: rgb(114, 241, 35);
 }

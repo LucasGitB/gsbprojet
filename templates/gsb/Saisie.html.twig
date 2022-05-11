@@ -63,6 +63,11 @@
       <h3 class="tab-color">Frais au forfait</h3>
         {{ form_start(form) }}
       </thead>
+  {% for message in app.flashes('success') %}
+      <div class="flash-info">
+          {{ message }}
+      </div>
+  {% endfor %}
 
         <tbody>
           <tr>

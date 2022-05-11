@@ -67,6 +67,11 @@
   </thead>
 
   <tbody>
+    {% for message in app.flashes('success') %}
+      <div class="flash-info">
+          {{ message }}
+      </div>
+    {% endfor %}
     <tr>
       <th>{{ form_label(form2.periode, 'periode')}} {{ form_widget(form2.periode, {'value':  ("now" | date("m/Y")) , 'attr' : {'disabled' : 'disabled'}})}}</th>
       <th class="form-group">{{ form_row(form2.date, {'attr':{'class':'form-control', 'placeholder':'jj/mm/aaaa'}} )}}</th>
